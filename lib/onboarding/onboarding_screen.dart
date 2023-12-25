@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduated_project/database/local_database.dart';
+import 'package:graduated_project/login/login_screen.dart';
 
 import '../home/home_screen.dart';
 import '../widgets/custom_elvated_button.dart';
@@ -32,19 +33,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             controller: _pageController,
             children: const [
               OnboardingPage(
-                image: 'assets/image/Background 1.png',
+                image: 'assets/image/onboarding/Background 1.png',
                 title: 'Find a job, and start building your career from now on',
                 description:
                     'Explore over 25,924 available job roles and upgrade your operator now.',
               ),
               OnboardingPage(
-                image: 'assets/image/Background 2.png',
+                image: 'assets/image/onboarding/Background 2.png',
                 title: 'Hundreds of jobs are waiting for you to join together',
                 description:
                     'Immediately join us and start applying for the job you are interested in.',
               ),
               OnboardingPage(
-                image: 'assets/image/Background 3.png',
+                image: 'assets/image/onboarding/Background 3.png',
                 title:
                     'Get the best choice for the job you\'ve always dreamed of',
                 description:
@@ -72,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         LocalDataBase.setFirstTime();
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
+                              builder: (context) => const LoginScreen(),
                             ),
                             (route) => false);
                       },
@@ -103,7 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     if (pageNumber == 2) {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
+                            builder: (context) => const LoginScreen(),
                           ),
                           (route) => false);
                     }

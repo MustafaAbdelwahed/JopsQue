@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/create_accoun/create_accoun_screen.dart';
+import 'package:graduated_project/create_accoun/work_interested_screen.dart';
 import 'package:graduated_project/onboarding/onboarding_screen.dart';
+import 'package:graduated_project/root_screen/root_screen.dart';
+import 'package:graduated_project/widgets/text_field/test2.dart';
 
 import 'login/login_screen.dart';
+import 'test1/test1.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'graduted project',
-      home: LoginScreen(),
+      home: WorkInterestedScreen(),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:graduated_project/widgets/logo.dart';
 
 import '../widgets/custom_elvated_button.dart';
 import '../widgets/logos.dart';
-import '../widgets/custom_textfield.dart';
+import '../widgets/text_field/custom_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w400)),
                   const SizedBox(height: 30),
 
-                  TextFieldCustome(
+                  CustomeTextField(
                     textInputType: TextInputType.name,
                     controller: _usernameController,
                     prefixIcons: Icons.person_outline,
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  TextFieldCustome(
+                  CustomeTextField(
                       textInputType: TextInputType.number,
                       controller: _passwordController,
                       prefixIcons: Icons.lock_outline_rounded,
@@ -156,11 +156,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Logos(
-                          image: AssetImage("assets/logo/google.png"),
+                          image: AssetImage("assets/image/logo/google.png"),
                           text: Text("Google")),
                       // Spacer(),
                       Logos(
-                          image: AssetImage("assets/logo/Facebook.png"),
+                          image: AssetImage("assets/image/logo/Facebook.png"),
                           text: Text("Facebook")),
                     ],
                   )

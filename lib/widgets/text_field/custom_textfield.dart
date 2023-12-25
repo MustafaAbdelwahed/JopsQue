@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class TextFieldCustome extends StatelessWidget {
-  TextFieldCustome(
+class CustomeTextField extends StatelessWidget {
+  CustomeTextField(
       {super.key,
       required this.prefixIcons,
       this.suffixIcons,
