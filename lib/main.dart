@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/create_accoun/create_accoun_screen.dart';
+import 'package:graduated_project/create_accoun/prefefred_location.dart';
 import 'package:graduated_project/create_accoun/work_interested_screen.dart';
 import 'package:graduated_project/onboarding/onboarding_screen.dart';
 import 'package:graduated_project/root_screen/root_screen.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'graduted project',
-      home: WorkInterestedScreen(),
+      home: PrefefredLocation(),
     );
   }
 }
