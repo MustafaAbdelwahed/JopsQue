@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
   final String image;
-  final String title;
+  final Widget title;
   final String description;
 
   const OnboardingPage(
@@ -28,13 +28,11 @@ class OnboardingPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16.0),
-          Text(title,
-              style:
-                  const TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8.0),
+          title,
+          const SizedBox(height: 13.0),
           Text(description,
               style: const TextStyle(
-                fontSize: 16.0,
+                fontSize: 15.0,
               )),
         ],
       ),

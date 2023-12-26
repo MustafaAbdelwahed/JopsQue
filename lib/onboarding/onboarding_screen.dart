@@ -31,23 +31,63 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               });
             },
             controller: _pageController,
-            children: const [
+            children: [
               OnboardingPage(
                 image: 'assets/image/onboarding/Background 1.png',
-                title: 'Find a job, and start building your career from now on',
+                title: RichText(
+                    text: const TextSpan(
+                        children: [
+                      TextSpan(text: "Find a job, and"),
+                      TextSpan(
+                          text: " start building ",
+                          style: TextStyle(
+                            color: Color(0xff3366FF),
+                          )),
+                      TextSpan(text: "your career from now on"),
+                    ],
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.w500))),
                 description:
                     'Explore over 25,924 available job roles and upgrade your operator now.',
               ),
               OnboardingPage(
                 image: 'assets/image/onboarding/Background 2.png',
-                title: 'Hundreds of jobs are waiting for you to join together',
+                title: RichText(
+                    text: const TextSpan(
+                        children: [
+                      TextSpan(text: "Hundreds of jobs are waiting for you to"),
+                      TextSpan(
+                          text: " join together ",
+                          style: TextStyle(
+                            color: Color(0xff3366FF),
+                          )),
+                    ],
+                        style: TextStyle(
+                            color: Color(0xff111827),
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.w500))),
                 description:
                     'Immediately join us and start applying for the job you are interested in.',
               ),
               OnboardingPage(
                 image: 'assets/image/onboarding/Background 3.png',
-                title:
-                    'Get the best choice for the job you\'ve always dreamed of',
+                title: RichText(
+                    text: const TextSpan(
+                        children: [
+                      TextSpan(text: "Get the best"),
+                      TextSpan(
+                          text: " choice for the job",
+                          style: TextStyle(
+                            color: Color(0xff3366FF),
+                          )),
+                      TextSpan(text: "you've always dreamed of"),
+                    ],
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.w500))),
                 description:
                     'The better the skills you have, the greater the good job opportunities for you.',
               ),
@@ -87,7 +127,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 const Spacer(),
                 dotIndicator(),
                 const SizedBox(
-                  height: 16,
+                  height: 30,
                 ),
                 CustomElvatedButton(
                   text: Text(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduated_project/create_accoun/create_accoun_screen.dart';
+import 'package:graduated_project/forgot_password/forgot_password_screen.dart';
 import 'package:graduated_project/widgets/logo.dart';
+import 'package:graduated_project/widgets/text_field/custom_textfield_pass.dart';
 
 import '../widgets/custom_elvated_button.dart';
 import '../widgets/logos.dart';
@@ -14,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool visibility = false;
   bool remember = false;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -70,36 +73,39 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  CustomeTextField(
-                      textInputType: TextInputType.number,
-                      controller: _passwordController,
-                      prefixIcons: Icons.lock_outline_rounded,
-                      suffixIcons: Icons.visibility_off,
-                      hintext: "Password",
-                      isPass: true),
-                  const SizedBox(height: 20),
-                  Visibility(
-                    visible: true,
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          value: remember,
-                          onChanged: (value) {
-                            setState(() {
-                              remember = value!;
-                            });
-                          },
-                        ),
-                        const Text("Remember me"),
-                        const Spacer(),
-                        const Text(
+                  CustomeTextFieldPAss(
+                    textInputType: TextInputType.emailAddress,
+                    controller: _passwordController,
+                    prefixIcons: Icons.lock_outline_rounded,
+                    suffixIcons: Icons.visibility_off,
+                    hintext: "Password",
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        activeColor: Color(0xff3366FF),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                        value: remember,
+                        onChanged: (value) {
+                          setState(() {
+                            remember = value!;
+                          });
+                        },
+                      ),
+                      const Text("Remember me"),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ForgotPasswordScreen()));
+                        },
+                        child: const Text(
                           "Forgot Password?",
                           style: TextStyle(color: Color(0XFF3366FF)),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 173,
