@@ -1,24 +1,36 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
-class CustomeTextFieldPAss extends StatelessWidget {
-  CustomeTextFieldPAss(
+class CustomeTextFieldPAss extends StatefulWidget {
+  const CustomeTextFieldPAss(
       {super.key,
       required this.prefixIcons,
-      this.suffixIcons,
+      required this.suffixIcons,
       required this.hintext,
-      this.isPass = false,
       required this.controller,
       required this.textInputType,
-      required this.validator});
+      this.validator,
+      required this.errorText});
 
+  //  Bool ispas;
   final IconData prefixIcons;
-  IconData? suffixIcons;
+  final IconData? suffixIcons;
   final String hintext;
   final TextEditingController controller;
-  bool isPass;
   final TextInputType? textInputType;
+  final String errorText;
+
+  final String? Function(String?)? validator;
+
+  @override
+  State<CustomeTextFieldPAss> createState() => _CustomeTextFieldPAssState();
+}
+
+class _CustomeTextFieldPAssState extends State<CustomeTextFieldPAss> {
+  bool visible = false;
 
   final List<Color> _color = [
     const Color(0xffD1D5DB),
@@ -27,30 +39,31 @@ class CustomeTextFieldPAss extends StatelessWidget {
     const Color(0xff60C631),
     const Color(0xff3366FF),
   ];
-  final String? Function(String?) validator;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: validator,
+      validator: widget.validator,
       // style: TextStyle(fontSize: 20),
-      keyboardType: textInputType,
-      controller: controller,
-      obscureText: isPass ? true : false,
+      keyboardType: widget.textInputType,
+      controller: widget.controller,
+      obscureText: visible ? false : true,
       decoration: InputDecoration(
         //error
         focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: controller.text.length < 8 ? _color[2] : _color[4]),
+                color:
+                    widget.controller.text.length < 8 ? _color[2] : _color[4]),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor(controller)),
+            borderSide: BorderSide(color: borderColor(widget.controller)),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
-        errorText: "Password must be at least 8 characters",
+        errorText: widget.validator == null ? null : widget.errorText,
 
         errorStyle: TextStyle(
-            fontWeight: FontWeight.w400, color: errorColor(controller)),
+            fontWeight: FontWeight.w400, color: errorColor(widget.controller)),
         //prefix
-        prefixIcon: Icon(prefixIcons),
+        prefixIcon: Icon(widget.prefixIcons),
         prefixIconColor: const Color(0xff9ca3af),
         // focusColor: Color.fromARGB(255, 51, 255, 78),
         focusedBorder: const OutlineInputBorder(
@@ -60,12 +73,16 @@ class CustomeTextFieldPAss extends StatelessWidget {
             borderSide: BorderSide(color: Color(0xffD1D5DB)),
             borderRadius: BorderRadius.all(Radius.circular(8))),
         //suffix
-        suffixIcon: isPass
-            ? IconButton(onPressed: () {}, icon: Icon(suffixIcons))
-            : null,
+        suffixIcon: IconButton(
+            onPressed: () {
+              setState(() {
+                visible = !visible;
+              });
+            },
+            icon: Icon(widget.suffixIcons)),
         suffixIconColor: const Color.fromARGB(255, 97, 101, 109),
 
-        hintText: hintext,
+        hintText: widget.hintext,
       ),
     );
   }

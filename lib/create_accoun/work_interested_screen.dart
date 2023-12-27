@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduated_project/create_accoun/prefefred_location.dart';
 import 'package:graduated_project/test1/test1.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
 
@@ -78,7 +79,11 @@ class WorkInterestedScreen extends StatelessWidget {
               ),
               CustomElvatedButton(
                 text: const Text("Next"),
-                onpress: () {},
+                onpress: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PrefefredLocationScreeen(),
+                  ));
+                },
                 color: const Color(0xff3366FF),
               )
             ],

@@ -83,18 +83,19 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
                 Form(
                   key: _formKey,
                   child: CustomeTextFieldPAss(
-                      validator: (value) {
-                        if (value == null || value.length <= 8) {
-                          return 'Password must be at least 8 characters ';
-                        }
-                        return null;
-                      },
-                      textInputType: TextInputType.visiblePassword,
-                      controller: _passwordController,
-                      prefixIcons: Icons.lock_outline_rounded,
-                      suffixIcons: Icons.visibility_off,
-                      hintext: "Password",
-                      isPass: true),
+                    errorText: "Password must be at least 8 characters",
+                    validator: (value) {
+                      if (value == null || value.length <= 8) {
+                        return 'Password must be at least 8 characters ';
+                      }
+                      return null;
+                    },
+                    textInputType: TextInputType.visiblePassword,
+                    controller: _passwordController,
+                    prefixIcons: Icons.lock_outline_rounded,
+                    suffixIcons: Icons.visibility_off,
+                    hintext: "Password",
+                  ),
                 ),
                 const SizedBox(height: 20),
 

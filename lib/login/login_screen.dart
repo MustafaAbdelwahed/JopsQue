@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduated_project/create_accoun/create_accoun_screen.dart';
+import 'package:graduated_project/forgot_password/forgot_password_screen.dart';
 import 'package:graduated_project/widgets/logo.dart';
 
 import '../widgets/custom_elvated_button.dart';
@@ -94,9 +95,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const Text("Remember me"),
                         const Spacer(),
-                        const Text(
-                          "Forgot Password?",
-                          style: TextStyle(color: Color(0XFF3366FF)),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ForgotPasswordScreen(),
+                            ));
+                          },
+                          child: const Text(
+                            "Forgot Password?",
+                            style: TextStyle(color: Color(0XFF3366FF)),
+                          ),
                         ),
                       ],
                     ),
