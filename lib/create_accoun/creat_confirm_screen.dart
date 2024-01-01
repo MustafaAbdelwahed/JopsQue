@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduated_project/login/login_screen.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
 
 class CreatConfirmScreen extends StatelessWidget {
@@ -46,7 +47,13 @@ class CreatConfirmScreen extends StatelessWidget {
             ),
             CustomElvatedButton(
                 text: const Text("Get Started"),
-                onpress: () {},
+                onpress: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                      (route) => false);
+                },
                 color: const Color(0xff3366FF)),
             const SizedBox(
               height: 20,

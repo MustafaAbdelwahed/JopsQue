@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduated_project/forgot_password/create_new_password_screen.dart';
+import 'package:graduated_project/home/home_screen.dart';
+import 'package:graduated_project/login/login_screen.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
 
 class PasswordChangedSuccesfully extends StatelessWidget {
@@ -25,7 +27,7 @@ class PasswordChangedSuccesfully extends StatelessWidget {
             const Spacer(),
             Image.asset(
                 "assets/image/Ilustration/Password Succesfully Ilustration.png"),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             const Text(
@@ -49,9 +51,11 @@ class PasswordChangedSuccesfully extends StatelessWidget {
             CustomElvatedButton(
                 text: const Text("Get Started"),
                 onpress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CreateNewPasswordScreen(),
-                  ));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                      (route) => false);
                 },
                 color: const Color(0xff3366FF)),
             const SizedBox(

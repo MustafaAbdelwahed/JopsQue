@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_print
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:graduated_project/create_accoun/work_interested_screen.dart';
 import 'package:graduated_project/widgets/logo.dart';
@@ -132,9 +135,8 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
                     if (!_formKey.currentState!.validate()) {
                       return;
                     }
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WorkInterestedScreen(),
-                    ));
+                    // signUp();
+                    print(signUp());
                   },
                 ),
                 const SizedBox(height: 20),
@@ -173,5 +175,59 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
         ),
       ),
     );
+  }
+
+  // Future<void> signUp() async {
+  //   String name = _usernameController.text;
+  //   String password = _passwordController.text;
+  //   String email = _emailController.text;
+
+  //   Dio dio = Dio();
+  //   final response = await dio.put(
+  //     "https://project2.amit-learning.com/api/auth/register",
+  //     data: {
+  //       "name": name,
+  //       "email": email,
+  //       "password": password,
+  //     },
+  //     options: Options(headers: {
+  //       "Accept": "application/json",
+  //     }, validateStatus: (_) => true),
+  //   );
+  //   print(response);
+  // }
+
+  Future signUp() async {
+    String name = _usernameController.text;
+    String password = _passwordController.text;
+    String email = _emailController.text;
+    Dio dio = Dio();
+
+    final response =
+        await dio.post("https://project2.amit-learning.com/api/auth/register",
+            data: {
+              "name": name,
+              'email': email,
+              'password': password,
+            },
+            options: Options(validateStatus: (_) => true)
+            // options: Options(headers: {
+            //   "Accept": "application/json",
+            // }, validateStatus: (_) => true),
+            );
+    print(response.data);
+    if (!response.data['status']) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("the username, email or password is not correct")));
+    } else {
+      final id = response.data['profile']['user_id'];
+      final usrname = response.data['profile']['name'];
+      final email = response.data['profile']['email'];
+      final token = response.data['token'];
+      print("naem $usrname  ,id  $id  ,   email $email & token  $token");
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const WorkInterestedScreen(),
+      ));
+    }
   }
 }

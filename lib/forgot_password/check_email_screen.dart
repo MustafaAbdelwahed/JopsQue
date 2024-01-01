@@ -24,7 +24,7 @@ class CheckEmailScreen extends StatelessWidget {
           children: [
             const Spacer(),
             Image.asset("assets/image/Ilustration/Email Ilustration.png"),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             const Text(
@@ -48,7 +48,7 @@ class CheckEmailScreen extends StatelessWidget {
                 text: const Text("Get Started"),
                 onpress: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CreateNewPasswordScreen(),
+                    builder: (context) => const CreateNewPasswordScreen(),
                   ));
                 },
                 color: const Color(0xff3366FF)),

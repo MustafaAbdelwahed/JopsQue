@@ -5,16 +5,24 @@ import 'package:flutter/material.dart';
 class CustomeTextField extends StatelessWidget {
   CustomeTextField(
       {super.key,
-      required this.prefixIcons,
+      this.prefixIcons,
       this.suffixIcons,
-      required this.hintext,
+      this.hintext,
       this.isPass = false,
       required this.controller,
-      required this.textInputType});
+      required this.textInputType,
+      this.prefixImage,
+      this.borderRadius,
+      this.borderColor,
+      this.cursorColor});
 
-  final IconData prefixIcons;
+  final Color? borderColor;
+  final Color? cursorColor;
+  final double? borderRadius;
+  final IconData? prefixIcons;
+  final Image? prefixImage;
   IconData? suffixIcons;
-  final String hintext;
+  final String? hintext;
   final TextEditingController controller;
   bool isPass;
   final TextInputType? textInputType;
@@ -22,6 +30,7 @@ class CustomeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: cursorColor ?? const Color(0xff3366FF),
       keyboardType: textInputType,
       controller: controller,
       obscureText: isPass ? true : false,
@@ -29,13 +38,15 @@ class CustomeTextField extends StatelessWidget {
         prefixIconColor: const Color(0xff9ca3af),
         suffixIconColor: const Color.fromARGB(255, 97, 101, 109),
         // focusColor: Color.fromARGB(255, 51, 255, 78),
-        focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xff3366FF)),
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xffD1D5DB)),
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        prefixIcon: Icon(prefixIcons),
+        focusedBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: borderColor ?? const Color(0xff3366FF)),
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 8))),
+        enabledBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: borderColor ?? const Color(0xffD1D5DB)),
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 8))),
+        prefixIcon: prefixIcons != null ? Icon(prefixIcons) : prefixImage,
         suffixIcon: isPass
             ? IconButton(onPressed: () {}, icon: Icon(suffixIcons))
             : null,

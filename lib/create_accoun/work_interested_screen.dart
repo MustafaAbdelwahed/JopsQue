@@ -81,7 +81,7 @@ class WorkInterestedScreen extends StatelessWidget {
                 text: const Text("Next"),
                 onpress: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PrefefredLocationScreeen(),
+                    builder: (context) => const PrefefredLocationScreeen(),
                   ));
                 },
                 color: const Color(0xff3366FF),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduated_project/create_accoun/work_interested_screen.dart';
+import 'package:graduated_project/forgot_password/password_changed_succesfully.dart';
 import 'package:graduated_project/test1/test1.dart';
 import 'package:graduated_project/widgets/logo.dart';
 
@@ -81,16 +82,16 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     suffixIcons: Icons.visibility_off,
                     hintext: "Password",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomeTextFieldPAss(
                     errorText: "Both password must match",
                     validator: (value) {
                       if (value == null ||
-                          value.length <= 8 ||
-                          _passwordController.text ==
-                              _verfiyPasswordController) {
+                          value.length <= 8 &&
+                              _passwordController.text ==
+                                  _verfiyPasswordController.text) {
                         return "Both password must match";
                       }
                       return null;
@@ -118,13 +119,13 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     ),
                     color: const Color(0xff3366FF),
                     onpress: () {
-                      // if (!_formKey.currentState!.validate()) {
-                      //   return;
-                      // }
-                      // print("ifdasia");
-                      // Navigator.of(context).push(MaterialPageRoute( //TODO Navigator
-                      //   builder: (context) => Test1(),
-                      // ));
+                      if (!_formKey.currentState!.validate()) {
+                        return;
+                      }
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            const PasswordChangedSuccesfully(),
+                      ));
                     },
                   ),
                   const SizedBox(height: 20),

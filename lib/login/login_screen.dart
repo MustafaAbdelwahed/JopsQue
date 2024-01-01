@@ -1,6 +1,12 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:graduated_project/create_accoun/create_accoun_screen.dart';
+import 'package:graduated_project/database/local_database.dart';
 import 'package:graduated_project/forgot_password/forgot_password_screen.dart';
+import 'package:graduated_project/home/home_screen.dart';
+import 'package:graduated_project/model/user.dart';
 import 'package:graduated_project/widgets/logo.dart';
 
 import '../widgets/custom_elvated_button.dart';
@@ -16,7 +22,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool remember = false;
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -64,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   CustomeTextField(
                     textInputType: TextInputType.name,
-                    controller: _usernameController,
+                    controller: _emailController,
                     prefixIcons: Icons.person_outline,
                     hintext: "Username",
                     suffixIcons: Icons.abc_rounded,
@@ -140,7 +146,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     color: const Color(0xff3366FF),
-                    onpress: () {},
+                    onpress: () {
+                      login();
+                    },
                   ),
                   const SizedBox(height: 20),
                   const SizedBox(
@@ -179,5 +187,49 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> login() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
+    Dio dio = Dio();
+
+    final response = await dio.post(
+      "https://project2.amit-learning.com/api/auth/login",
+      data: {
+        'email': email,
+        'password': password,
+      },
+      options: Options(headers: {
+        "Accept": "application/json",
+      }, validateStatus: (_) => true),
+    );
+
+    // final token = response.data['token'];
+
+    // print(theUser.email);
+    // print(user.from);
+    // user = response.data['user']as
+
+    if (!response.data['status']) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("the email or password is not correct")));
+    } else {
+      print(response.data);
+      final user = User.fromJson(response.data['user']);
+      user.token = response.data['token'];
+      print(user.token);
+
+      // final id = response.data['user']['id'];
+      // print("token is ${user.} & the Id is $id ");
+
+      LocalDataBase.setID(user.id);
+      LocalDataBase.setToken(user.token!);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(user: user),
+          ),
+          (route) => false);
+    }
   }
 }

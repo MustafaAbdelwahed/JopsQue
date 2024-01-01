@@ -38,6 +38,8 @@ dependencies:
   flutter_riverpod: ^2.4.9
   shared_preferences: ^2.2.2
   custom_sliding_segmented_control: ^1.8.1
+  dio: ^5.4.0
+  
   # font_awesome_flutter: ^10.6.0
   
 
@@ -73,6 +75,8 @@ flutter:
     - assets/image/onboarding/
     - assets/image/flags/
     - assets/image/Ilustration/
+    - assets/image/home screen/
+    - assets/image/just image/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

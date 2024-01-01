@@ -11,9 +11,9 @@ class PrefefredLocationScreeen extends StatefulWidget {
       _PrefefredLocationScreeenState();
 }
 
-int currentText = 0;
-
 class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
+  int currentText = 0;
+
   List<String> selectedChips = [];
 
   @override
@@ -51,7 +51,7 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
                     style: TextStyle(
                         color: currentText == 0
                             ? Colors.white
-                            : Color.fromARGB(255, 93, 98, 110)),
+                            : const Color.fromARGB(255, 93, 98, 110)),
                   ),
                   1: Text(
                     "Remote Work",
@@ -75,7 +75,7 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
                   setState(() {
                     currentText = index;
                   });
-                  print(currentText);
+                  // print(currentText);
                 },
               ),
             ),
@@ -95,43 +95,43 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
               spacing: 5,
               runSpacing: 5,
               children: [
-                designcustom(
+                customChip(
                     flag: Image.asset("assets/image/flags/United States.png"),
                     nameOfFlag: "United States"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Malaysia.png'),
                     nameOfFlag: "Malaysia"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Singapore.png'),
                     nameOfFlag: "Singapore"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Indonesia.png'),
                     nameOfFlag: "Indonesia"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Philiphines.png'),
                     nameOfFlag: "Philiphines"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Polandia.png'),
                     nameOfFlag: "Polandia"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/India.png'),
                     nameOfFlag: "India"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Vietnam.png'),
                     nameOfFlag: "Vietnam"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/China.png'),
                     nameOfFlag: "China"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Canada.png'),
                     nameOfFlag: "Canada"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Saudi Arabia.png'),
                     nameOfFlag: "Saudi Arabia"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Argentina.png'),
                     nameOfFlag: "Argentina"),
-                designcustom(
+                customChip(
                     flag: Image.asset('assets/image/flags/Brazil.png'),
                     nameOfFlag: "Brazil"),
               ],
@@ -139,17 +139,17 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
             // SizedBox(
             //   height: 40,
             // ),
-            Spacer(),
+            const Spacer(),
             CustomElvatedButton(
               text: const Text("Next"),
               onpress: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CreatConfirmScreen(),
+                  builder: (context) => const CreatConfirmScreen(),
                 ));
               },
               color: const Color(0xff3366FF),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             )
           ],
@@ -158,9 +158,9 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
     );
   }
 
-  FilterChip designcustom({required Image flag, required String nameOfFlag}) {
+  FilterChip customChip({Image? flag, required String nameOfFlag}) {
     return FilterChip(
-      padding: EdgeInsets.only(top: 8, right: 14, bottom: 8, left: 10),
+      padding: const EdgeInsets.only(top: 8, right: 14, bottom: 8, left: 10),
       side: BorderSide(
         width: 1,
         color: selectedChips.contains(nameOfFlag)
@@ -173,7 +173,7 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
       pressElevation: 0,
       label: Text(
         nameOfFlag,
-        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
       ),
       // avatar: ,
       avatar: flag,
@@ -191,6 +191,7 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
       } else {
         selectedChips.remove(chip);
       }
+      print(selectedChips);
     });
   }
 }

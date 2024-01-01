@@ -13,11 +13,11 @@ class RootScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(rootProvider).when(
         data: (data) {
-          if (data == "first-time") {
-            return const OnboardingScreen();
-          } else {
-            return const HomeScreen();
-          }
+          // if (data == "first-time") {
+          return const OnboardingScreen();
+          // } else {
+          // return const HomeScreen();
+          // }
         },
         error: (e, s) => const Scaffold(
                 body: Center(
