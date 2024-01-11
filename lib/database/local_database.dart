@@ -1,3 +1,4 @@
+import 'package:graduated_project/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalDataBase {
@@ -37,5 +38,27 @@ class LocalDataBase {
   static Future clearAll() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
+  }
+
+  static void setUser(User user) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setStringList("user", [
+      user.id.toString(),
+      user.name,
+      user.email,
+    ]);
+  }
+
+  static Future getUser() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await Future.delayed(Duration(seconds: 1));
+
+    List<String>? us = pref.getStringList("user");
+    User user = User(
+      id: int.parse(us![0]),
+      name: us[1],
+      email: us[2],
+    );
+    return user;
   }
 }

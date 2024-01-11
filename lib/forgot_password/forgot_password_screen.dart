@@ -13,9 +13,6 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: const [
           Logo(
             height: 19,
@@ -48,10 +45,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                     fontWeight: FontWeight.w400)),
             const SizedBox(height: 30),
             CustomeTextField(
-                prefixIcons: Icons.email_outlined,
-                hintext: "Enter your email....",
-                controller: _emailControl,
-                textInputType: TextInputType.emailAddress),
+              prefixIcons: Icon(Icons.email_outlined),
+              hintext: "Enter your email....",
+              controller: _emailControl,
+            ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

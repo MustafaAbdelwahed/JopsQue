@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduated_project/create_accoun/prefefred_location.dart';
-import 'package:graduated_project/test1/test1.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
 
-import '../widgets/logo.dart';
 import 'work_interested_irem.dart';
 
 class WorkInterestedScreen extends StatelessWidget {

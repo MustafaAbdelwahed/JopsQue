@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:graduated_project/create_accoun/create_accoun_screen.dart';
 import 'package:graduated_project/database/local_database.dart';
 import 'package:graduated_project/forgot_password/forgot_password_screen.dart';
-import 'package:graduated_project/home/home_screen.dart';
+import 'package:graduated_project/home/screen/home_screen.dart';
 import 'package:graduated_project/model/user.dart';
 import 'package:graduated_project/widgets/logo.dart';
 
@@ -28,9 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: const [
           Logo(
             height: 19,
@@ -48,140 +45,135 @@ class _LoginScreenState extends State<LoginScreen> {
           constraints:
               BoxConstraints(minHeight: MediaQuery.of(context).size.height),
           child: SingleChildScrollView(
-            child: Form(
-              child: Column(
-                // mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Text(
-                    "Login",
-                    // textAlign: TextAlign.end,
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(
-                    height: 9,
-                  ),
-                  const Text("Please login to find your dream job",
-                      style: TextStyle(
-                          color: Color(0xff6B7280),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400)),
-                  const SizedBox(height: 30),
+            child: Column(
+              // mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  "Login",
+                  // textAlign: TextAlign.end,
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(
+                  height: 9,
+                ),
+                const Text("Please login to find your dream job",
+                    style: TextStyle(
+                        color: Color(0xff6B7280),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400)),
+                const SizedBox(height: 30),
 
-                  CustomeTextField(
-                    textInputType: TextInputType.name,
-                    controller: _emailController,
-                    prefixIcons: Icons.person_outline,
-                    hintext: "Username",
-                    suffixIcons: Icons.abc_rounded,
-                  ),
-                  const SizedBox(height: 16),
+                CustomeTextField(
+                  controller: _emailController,
+                  prefixIcons: const Icon(Icons.person_outline),
+                  hintext: "Username",
+                  suffixIcons: Icons.abc_rounded,
+                ),
+                const SizedBox(height: 16),
 
-                  CustomeTextField(
-                      textInputType: TextInputType.number,
-                      controller: _passwordController,
-                      prefixIcons: Icons.lock_outline_rounded,
-                      suffixIcons: Icons.visibility_off,
-                      hintext: "Password",
-                      isPass: true),
-                  const SizedBox(height: 20),
-                  Visibility(
-                    visible: true,
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          value: remember,
-                          onChanged: (value) {
-                            setState(() {
-                              remember = value!;
-                            });
-                          },
-                        ),
-                        const Text("Remember me"),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ForgotPasswordScreen(),
-                            ));
-                          },
-                          child: const Text(
-                            "Forgot Password?",
-                            style: TextStyle(color: Color(0XFF3366FF)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 173,
-                  ),
-
-                  // const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                CustomeTextField(
+                    controller: _passwordController,
+                    prefixIcons: const Icon(Icons.lock_outline_rounded),
+                    suffixIcons: Icons.visibility_off,
+                    hintext: "Password",
+                    isPass: true),
+                const SizedBox(height: 20),
+                Visibility(
+                  visible: true,
+                  child: Row(
                     children: [
-                      const Text("Dont’t have an account?"),
-                      const SizedBox(width: 6),
-                      GestureDetector(
-                        onTap: () =>
-                            Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const CreateAccounScreen(),
-                        )),
-                        child: const Text("Register",
-                            style: TextStyle(color: Color(0XFF3366FF))),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  CustomElvatedButton(
-                    text: const Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Colors.white,
+                      Checkbox(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                        value: remember,
+                        onChanged: (value) {
+                          setState(() {
+                            remember = value!;
+                          });
+                        },
                       ),
-                    ),
-                    color: const Color(0xff3366FF),
-                    onpress: () {
-                      login();
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  const SizedBox(
-                    height: 20,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Divider(thickness: 2),
+                      const Text("Remember me"),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ForgotPasswordScreen(),
+                          ));
+                        },
+                        child: const Text(
+                          "Forgot Password?",
+                          style: TextStyle(color: Color(0XFF3366FF)),
                         ),
-                        SizedBox(width: 25),
-                        Text("Or Login With Account"),
-                        SizedBox(width: 25),
-                        Expanded(
-                          child: Divider(thickness: 2),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Logos(
-                          image: AssetImage("assets/image/logo/google.png"),
-                          text: Text("Google")),
-                      // Spacer(),
-                      Logos(
-                          image: AssetImage("assets/image/logo/Facebook.png"),
-                          text: Text("Facebook")),
+                      ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 173,
+                ),
+
+                // const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Dont’t have an account?"),
+                    const SizedBox(width: 6),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const CreateAccounScreen(),
+                      )),
+                      child: const Text("Register",
+                          style: TextStyle(color: Color(0XFF3366FF))),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                CustomElvatedButton(
+                  text: const Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: const Color(0xff3366FF),
+                  onpress: () {
+                    login();
+                  },
+                ),
+                const SizedBox(height: 20),
+                const SizedBox(
+                  height: 20,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(thickness: 2),
+                      ),
+                      SizedBox(width: 25),
+                      Text("Or Login With Account"),
+                      SizedBox(width: 25),
+                      Expanded(
+                        child: Divider(thickness: 2),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 15),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Logos(
+                        image: AssetImage("assets/image/logo/google.png"),
+                        text: Text("Google")),
+                    // Spacer(),
+                    Logos(
+                        image: AssetImage("assets/image/logo/Facebook.png"),
+                        text: Text("Facebook")),
+                  ],
+                )
+              ],
             ),
           ),
         ),
@@ -205,12 +197,6 @@ class _LoginScreenState extends State<LoginScreen> {
       }, validateStatus: (_) => true),
     );
 
-    // final token = response.data['token'];
-
-    // print(theUser.email);
-    // print(user.from);
-    // user = response.data['user']as
-
     if (!response.data['status']) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("the email or password is not correct")));
@@ -220,15 +206,15 @@ class _LoginScreenState extends State<LoginScreen> {
       user.token = response.data['token'];
       print(user.token);
 
-      // final id = response.data['user']['id'];
-      // print("token is ${user.} & the Id is $id ");
-
-      LocalDataBase.setID(user.id);
+      LocalDataBase.setUser(user);
       LocalDataBase.setToken(user.token!);
+      // await Future.delayed(Duration(seconds: 2));
+
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => HomeScreen(user: user),
-          ),
+              builder: (context) => HomeScreen(
+                    user: user,
+                  )),
           (route) => false);
     }
   }

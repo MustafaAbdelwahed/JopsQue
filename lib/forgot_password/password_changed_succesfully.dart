@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduated_project/forgot_password/create_new_password_screen.dart';
-import 'package:graduated_project/home/home_screen.dart';
 import 'package:graduated_project/login/login_screen.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
 
@@ -11,9 +9,6 @@ class PasswordChangedSuccesfully extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: const [
           SizedBox(
             width: 20,

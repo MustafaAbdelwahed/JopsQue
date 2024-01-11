@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduated_project/create_accoun/work_interested_screen.dart';
 import 'package:graduated_project/forgot_password/password_changed_succesfully.dart';
-import 'package:graduated_project/test1/test1.dart';
 import 'package:graduated_project/widgets/logo.dart';
 
-import '../widgets/logos.dart';
 import '../widgets/custom_elvated_button.dart';
-import '../widgets/text_field/custom_textfield.dart';
 import '../widgets/text_field/custom_textfield_pass.dart';
 
 class CreateNewPasswordScreen extends StatefulWidget {
@@ -26,9 +22,6 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: const [
           Logo(
             height: 19,

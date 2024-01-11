@@ -27,9 +27,6 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: const [
           Logo(
             height: 19,
@@ -67,17 +64,15 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
                 const SizedBox(height: 30),
 
                 CustomeTextField(
-                  textInputType: TextInputType.name,
                   controller: _usernameController,
-                  prefixIcons: Icons.person_outline,
+                  prefixIcons: const Icon(Icons.person_outline),
                   hintext: "Username",
                   suffixIcons: Icons.abc_rounded,
                 ),
                 const SizedBox(height: 16),
                 CustomeTextField(
-                  textInputType: TextInputType.emailAddress,
                   controller: _emailController,
-                  prefixIcons: Icons.email_outlined,
+                  prefixIcons: const Icon(Icons.email_outlined),
                   hintext: "Email",
                   suffixIcons: Icons.abc_rounded,
                 ),

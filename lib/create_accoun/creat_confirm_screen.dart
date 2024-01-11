@@ -9,9 +9,6 @@ class CreatConfirmScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: const [
           SizedBox(
             width: 20,
@@ -25,7 +22,7 @@ class CreatConfirmScreen extends StatelessWidget {
             const Spacer(),
             Image.asset(
                 "assets/image/Ilustration/Success Account Ilustration.png"),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             const Text(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class WorkInterestedItem extends StatefulWidget {
-  WorkInterestedItem({
+  const WorkInterestedItem({
     super.key,
     required this.interestedName,
     required this.interestedeIcon,
   });
   final String interestedName;
-  AssetImage interestedeIcon;
+  final AssetImage interestedeIcon;
   @override
   State<WorkInterestedItem> createState() => _WorkInterestedItemState();
 }

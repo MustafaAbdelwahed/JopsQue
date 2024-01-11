@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
   final String image;
-  final String title;
+  final Text text;
   final String description;
 
   const OnboardingPage(
       {super.key,
       required this.image,
-      required this.title,
+      required this.text,
       required this.description});
 
   @override
@@ -28,14 +28,17 @@ class OnboardingPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16.0),
-          Text(title,
-              style:
-                  const TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8.0),
-          Text(description,
-              style: const TextStyle(
-                fontSize: 16.0,
-              )),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: text,
+          ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Text(description,
+                style:
+                    const TextStyle(fontSize: 16.0, color: Color(0xff6B7280))),
+          ),
         ],
       ),
     );

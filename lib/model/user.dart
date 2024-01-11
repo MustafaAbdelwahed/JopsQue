@@ -2,16 +2,16 @@ class User {
   late final int id;
   late final String name;
   late final String email;
-  late final String createdAt;
-  late final String updatedAt;
+  late final String? createdAt;
+  late final String? updatedAt;
   String? token;
 
-  // User(
-  //     {required this.id,
-  //     required this.name,
-  //     required this.email,
-  //     required this.createdAt,
-  //     required this.updatedAt});
+  User(
+      {required this.id,
+      required this.name,
+      required this.email,
+      this.createdAt,
+      this.updatedAt});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];

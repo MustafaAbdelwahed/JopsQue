@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/onboarding/onboarding_screen.dart';
 
-import '../home/home_screen.dart';
 import '../splach_screen/splach_screen.dart';
 import 'root_provider.dart';
 

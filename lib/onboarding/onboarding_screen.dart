@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:graduated_project/database/local_database.dart';
 import 'package:graduated_project/login/login_screen.dart';
 
-import '../home/home_screen.dart';
 import '../widgets/custom_elvated_button.dart';
 import '../widgets/logo.dart';
 import 'onboarding_page.dart';
@@ -34,20 +33,52 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: const [
               OnboardingPage(
                 image: 'assets/image/onboarding/Background 1.png',
-                title: 'Find a job, and start building your career from now on',
+                text: Text.rich(
+                  TextSpan(
+                      style: TextStyle(
+                          fontSize: 32.0, fontWeight: FontWeight.w500),
+                      children: [
+                        TextSpan(text: "Find a job, and"),
+                        TextSpan(
+                            text: " start building ",
+                            style: TextStyle(color: Color(0xff3366FF))),
+                        TextSpan(text: "your career from now on"),
+                      ]),
+                ),
                 description:
                     'Explore over 25,924 available job roles and upgrade your operator now.',
               ),
               OnboardingPage(
                 image: 'assets/image/onboarding/Background 2.png',
-                title: 'Hundreds of jobs are waiting for you to join together',
+                text: Text.rich(
+                  TextSpan(
+                      style: TextStyle(
+                          fontSize: 32.0, fontWeight: FontWeight.w500),
+                      children: [
+                        TextSpan(
+                            text: "Hundreds of jobs are waiting for you to"),
+                        TextSpan(
+                            text: " join together",
+                            style: TextStyle(color: Color(0xff3366FF))),
+                      ]),
+                ),
                 description:
                     'Immediately join us and start applying for the job you are interested in.',
               ),
               OnboardingPage(
                 image: 'assets/image/onboarding/Background 3.png',
-                title:
-                    'Get the best choice for the job you\'ve always dreamed of',
+                text: Text.rich(
+                  TextSpan(
+                      style: TextStyle(
+                          fontSize: 32.0, fontWeight: FontWeight.w500),
+                      children: [
+                        TextSpan(text: "Get the best"),
+                        TextSpan(
+                            text: " choice for the job ",
+                            style: TextStyle(color: Color(0xff3366FF))),
+                        TextSpan(text: "you've always dreamed of"),
+                      ]),
+                ),
                 description:
                     'The better the skills you have, the greater the good job opportunities for you.',
               ),
@@ -97,7 +128,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   color: const Color(0xff3366FF),
                   onpress: () {
                     LocalDataBase.setFirstTime();
-
                     _pageController.nextPage(
                         duration: const Duration(milliseconds: 150),
                         curve: Curves.linear);
