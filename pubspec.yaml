@@ -44,6 +44,8 @@ dependencies:
   dotted_border: ^2.1.0
   file_picker: ^6.1.1
   path: ^1.8.3
+  flutter_popup_menu_button: ^0.0.1+5
+  pinput: ^3.0.1
   
   
 
@@ -79,10 +81,11 @@ flutter:
     - assets/image/onboarding/
     - assets/image/flags/
     - assets/image/Ilustration/
-    - assets/image/home screen/
+    - assets/image/square flags/
     - assets/image/just image/
     - assets/image/profile/
     - assets/image/
+    - assets/image/image Company/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

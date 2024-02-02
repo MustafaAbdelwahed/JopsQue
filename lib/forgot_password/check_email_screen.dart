@@ -42,7 +42,7 @@ class CheckEmailScreen extends StatelessWidget {
               flex: 3,
             ),
             CustomElvatedButton(
-                text: const Text("Get Started"),
+                text: const Text("Open email app"),
                 onpress: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const CreateNewPasswordScreen(),

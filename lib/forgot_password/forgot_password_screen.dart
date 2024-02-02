@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graduated_project/forgot_password/check_email_screen.dart';
 import 'package:graduated_project/login/login_screen.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
-import 'package:graduated_project/widgets/logo.dart';
+import 'package:graduated_project/widgets/logo_app.dart';
 import 'package:graduated_project/widgets/text_field/custom_textfield.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -23,11 +23,11 @@ class ForgotPasswordScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Padding(
+      body: Container(
         padding:
-            const EdgeInsets.only(top: 39, right: 24, left: 24, bottom: 20),
+            const EdgeInsets.only(top: 10, right: 15, left: 15, bottom: 30),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
               "Reset Password",
@@ -77,7 +77,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               height: 20,
             ),
             CustomElvatedButton(
-              text: const Text("Next"),
+              text: const Text("Request password reset"),
               onpress: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => CheckEmailScreen(),
@@ -85,9 +85,9 @@ class ForgotPasswordScreen extends StatelessWidget {
               },
               color: const Color(0xff3366FF),
             ),
-            const SizedBox(
-              height: 24,
-            )
+            // const SizedBox(
+            //   height: 24,
+            // )
           ],
         ),
       ),

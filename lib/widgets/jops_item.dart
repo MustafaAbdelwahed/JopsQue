@@ -1,26 +1,24 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:graduated_project/jop_detail/jop_detail_screen.dart';
 import 'package:graduated_project/model/jops.dart';
 import 'package:graduated_project/widgets/custom_chip.dart';
+import 'package:graduated_project/message/widget/saved_icon.dart';
 
-// ignore: must_be_immutable
-class CustomContainer extends StatelessWidget {
-  CustomContainer({
+class JopsItem extends StatelessWidget {
+  JopsItem({
     super.key,
-    required this.jops,
+    required this.jop,
   });
-  final Jops jops;
+  final Jops jop;
 
-  late List listLocation = jops.location.split(" ");
+  late final List listLocation = jop.location.split(" ");
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => JopDetailScreen(jops: jops),
+          builder: (context) => JopDetailScreen(jop: jop),
         ));
       },
       child: Padding(
@@ -29,10 +27,13 @@ class CustomContainer extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.network(
-                  jops.image,
-                  width: 40,
-                  height: 40,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    jop.image,
+                    width: 40,
+                    height: 40,
+                  ),
                 ),
                 const SizedBox(
                   width: 20,
@@ -41,27 +42,28 @@ class CustomContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      jops.name,
-                      style: TextStyle(
+                      jop.name,
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 3,
                     ),
                     Text(
-                      "${jops.compName} • ${listLocation[listLocation.length - 2]} ${listLocation.last} ",
-                      style: TextStyle(
+                      "${jop.compName} • ${listLocation[listLocation.length - 2]} ${listLocation.last} ",
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                   ],
                 ),
-                Spacer(),
-                Image.asset('assets/image/icons/Vector.png',
-                    color: Colors.black)
+                const Spacer(),
+                SavedIcon(
+                  jops: jop,
+                )
               ],
             ),
             const SizedBox(
@@ -73,11 +75,11 @@ class CustomContainer extends StatelessWidget {
               children: [
                 const Spacer(),
                 CustomChip(
-                  text: jops.jobTimeType,
+                  text: jop.jobTimeType,
                 ),
                 const Spacer(),
                 CustomChip(
-                  text: jops.jobType,
+                  text: jop.jobType,
                 ),
                 const Spacer(
                   flex: 10,
@@ -86,10 +88,10 @@ class CustomContainer extends StatelessWidget {
                 //   flex: 4
                 // ),
                 Text(
-                  jops.salary.length > 3
-                      ? "\$${(int.parse(jops.salary) ~/ 1000)}K "
-                      : "\$${jops.salary} ",
-                  style: TextStyle(
+                  jop.salary.length > 3
+                      ? "\$${(int.parse(jop.salary) ~/ 1000)}K "
+                      : "\$${jop.salary} ",
+                  style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Color(0xff2E8E18)),

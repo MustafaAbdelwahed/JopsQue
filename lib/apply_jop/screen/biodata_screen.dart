@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduated_project/widgets/text_field/custom_textfield.dart';
 
 class BiodataScreen extends StatefulWidget {
-  BiodataScreen({
+  const BiodataScreen({
     super.key,
     required this.nameController,
     required this.emailController,
@@ -125,8 +125,6 @@ class _BiodataScreenState extends State<BiodataScreen> {
           controller: widget.phoneController,
           prefixIcons: PopupMenuButton(
               onSelected: (value) {
-                print(phone);
-
                 setState(() {
                   phone = value;
                 });
@@ -141,7 +139,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            "assets/image/egypt.png",
+                            "assets/image/flags/square egypt.png",
                             width: 30,
                           ),
                           const SizedBox(
@@ -161,7 +159,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            "assets/image/Saudi Arabia flag.jpg",
+                            "assets/image/flags/square Saudi Arabia flag.jpg",
                             width: 30,
                           ),
                           const SizedBox(
@@ -181,7 +179,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            "assets/image/United States.png",
+                            "assets/image/flags/square United States.png",
                             width: 30,
                           ),
                           const SizedBox(
@@ -202,16 +200,16 @@ class _BiodataScreenState extends State<BiodataScreen> {
                   children: [
                     phone == "966"
                         ? Image.asset(
-                            "assets/image/Saudi Arabia flag.jpg",
+                            "assets/image/flags/square Saudi Arabia flag.jpg",
                             width: 30,
                           )
                         : phone == "1"
                             ? Image.asset(
-                                "assets/image/United States.png",
+                                "assets/image/flags/square United States.png",
                                 width: 30,
                               )
                             : Image.asset(
-                                "assets/image/egypt.png",
+                                "assets/image/flags/square egypt.png",
                                 width: 30,
                               ),
                     const SizedBox(

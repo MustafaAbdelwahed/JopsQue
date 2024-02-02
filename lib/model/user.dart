@@ -1,17 +1,31 @@
 class User {
-  late final int id;
-  late final String name;
-  late final String email;
-  late final String? createdAt;
-  late final String? updatedAt;
+  int? id;
+  String? name;
+  String? email;
+  String? createdAt;
+  String? updatedAt;
   String? token;
+  String? bio;
+  String? address;
+  String? phone;
+  String? language;
+  String? interestedWork;
+  String? offlinePlace;
+  String? remotePlace;
+  String? experience;
+  String? personalDetailed;
+  String? education;
+  String? password;
 
-  User(
-      {required this.id,
-      required this.name,
-      required this.email,
-      this.createdAt,
-      this.updatedAt});
+  User({
+    required this.id,
+    required this.name,
+    required this.email,
+    this.createdAt,
+    this.updatedAt,
+    this.bio,
+    this.phone,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -20,6 +34,18 @@ class User {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     token = json['token'];
+    ////
+    bio = json['bio'];
+    address = json['address'];
+    phone = json['mobile'];
+    language = json['language'];
+    interestedWork = json['interested_work'];
+    offlinePlace = json['offline_place'];
+    remotePlace = json['remote_place'];
+    experience = json['experience'];
+    personalDetailed = json['personal_detailed'];
+    education = json['education'];
+    password = json['password'];
   }
 }
 

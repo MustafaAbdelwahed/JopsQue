@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduated_project/database/local_database.dart';
+import 'package:graduated_project/home/bottom_navigation_bar_item.dart';
 import 'package:graduated_project/home/screen/home_screen.dart';
-import 'package:graduated_project/login/login_screen.dart';
-import 'package:graduated_project/model/user.dart';
+
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
 
 class SuccessfullySentDataScreen extends StatelessWidget {
@@ -53,11 +52,10 @@ class SuccessfullySentDataScreen extends StatelessWidget {
             CustomElvatedButton(
                 text: const Text("Back to home"),
                 onpress: () async {
-                  User user = await LocalDataBase.getUser();
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => HomeScreen(
-                      user: user,
-                    ),
+                    builder: (context) => BootomNavigator(
+                        // user: user,
+                        ),
                   ));
                 },
                 color: const Color(0xff3366FF)),

@@ -16,8 +16,9 @@ class PasswordChangedSuccesfully extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(right: 15, left: 15, bottom: 30),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Spacer(),
             Image.asset(
@@ -27,7 +28,7 @@ class PasswordChangedSuccesfully extends StatelessWidget {
             ),
             const Text(
               "Password changed succesfully!",
-              // textAlign: TextAlign.end,
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
             ),
             const SizedBox(
@@ -44,7 +45,7 @@ class PasswordChangedSuccesfully extends StatelessWidget {
               flex: 3,
             ),
             CustomElvatedButton(
-                text: const Text("Get Started"),
+                text: const Text("Open email app"),
                 onpress: () {
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
@@ -53,9 +54,9 @@ class PasswordChangedSuccesfully extends StatelessWidget {
                       (route) => false);
                 },
                 color: const Color(0xff3366FF)),
-            const SizedBox(
-              height: 20,
-            )
+            // const SizedBox(
+            //   height: 20,
+            // )
           ],
         ),
       ),

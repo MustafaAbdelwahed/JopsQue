@@ -3,7 +3,7 @@ import 'package:graduated_project/database/local_database.dart';
 import 'package:graduated_project/login/login_screen.dart';
 
 import '../widgets/custom_elvated_button.dart';
-import '../widgets/logo.dart';
+import '../widgets/logo_app.dart';
 import 'onboarding_page.dart';
 
 class OnboardingScreen extends StatefulWidget {

@@ -17,6 +17,7 @@ class Jops {
   late final int expired;
   late final String createdAt;
   late final String updatedAt;
+  bool isSaved = false;
 
   Jops(
       {required this.id,
@@ -36,7 +37,8 @@ class Jops {
       required this.favorites,
       required this.expired,
       required this.createdAt,
-      required this.updatedAt});
+      required this.updatedAt,
+      this.isSaved = false});
 
   Jops.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -57,5 +59,6 @@ class Jops {
     expired = json['expired'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    isSaved = false;
   }
 }

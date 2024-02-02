@@ -21,7 +21,7 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
     return Scaffold(
       body: Padding(
         padding:
-            const EdgeInsets.only(top: 39, right: 24, left: 24, bottom: 20),
+            const EdgeInsets.only(top: 10, right: 15, left: 15, bottom: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -149,9 +149,6 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
               },
               color: const Color(0xff3366FF),
             ),
-            const SizedBox(
-              height: 10,
-            )
           ],
         ),
       ),

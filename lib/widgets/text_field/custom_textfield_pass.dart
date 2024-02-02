@@ -7,7 +7,7 @@ class CustomeTextFieldPAss extends StatefulWidget {
       {super.key,
       required this.prefixIcons,
       required this.suffixIcons,
-      required this.hintext,
+      this.hintext,
       required this.controller,
       required this.textInputType,
       this.validator,
@@ -16,7 +16,7 @@ class CustomeTextFieldPAss extends StatefulWidget {
   //  Bool ispas;
   final IconData prefixIcons;
   final IconData? suffixIcons;
-  final String hintext;
+  final String? hintext;
   final TextEditingController controller;
   final TextInputType? textInputType;
   final String errorText;

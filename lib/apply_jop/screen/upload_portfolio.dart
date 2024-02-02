@@ -63,10 +63,7 @@ class _UploadPortfolioScreenState extends State<UploadPortfolioScreen> {
             ListTile(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(
-                      color: selectedValue != 2
-                          ? const Color(0xffD1D5DB)
-                          : const Color(0xff3366FF))),
+                  side: BorderSide(color: const Color(0xffD1D5DB))),
               leading: Image.asset(
                 "assets/image/logo/pdf.png",
                 height: 40,
@@ -78,7 +75,7 @@ class _UploadPortfolioScreenState extends State<UploadPortfolioScreen> {
                 style: const TextStyle(fontWeight: FontWeight.w500),
               ),
               subtitle: Text(prov.pdfData?.name != null
-                  ? "${sizeOfTheFile(prov.pdfData!.size)} KB"
+                  ? "CV.pdf ${sizeOfTheFile(prov.pdfData!.size)} KB"
                   : "    "),
               trailing: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,7 +96,6 @@ class _UploadPortfolioScreenState extends State<UploadPortfolioScreen> {
                   GestureDetector(
                     onTap: () {
                       ref.read(providerr).removeCVData();
-                      // print(ref.read(providerr).pdfData);
                     },
                     child: Image.asset(
                       "assets/image/icons/close-circle.png",

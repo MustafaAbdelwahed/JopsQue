@@ -7,7 +7,7 @@ class WorkInterestedItem extends StatefulWidget {
     required this.interestedeIcon,
   });
   final String interestedName;
-  final AssetImage interestedeIcon;
+  final String interestedeIcon;
   @override
   State<WorkInterestedItem> createState() => _WorkInterestedItemState();
 }
@@ -60,8 +60,18 @@ class _WorkInterestedItemState extends State<WorkInterestedItem> {
                         color: Colors.white,
                         border: Border.all(color: borderColor),
                         borderRadius: BorderRadius.circular(200)),
-                    child:
-                        Image(color: iconColor, image: widget.interestedeIcon)),
+                    child: Image.asset(
+                      widget.interestedeIcon,
+                      scale: 2.5,
+                      color: iconColor,
+
+                      // width: 20,
+                    )
+                    //  Image(
+                    //   image: widget.interestedeIcon,
+                    //   ,
+                    // )
+                    ),
                 const SizedBox(
                   height: 16,
                 ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graduated_project/database/local_database.dart';
 import 'package:graduated_project/home/screen/resault_search_screen.dart';
 import 'package:graduated_project/provider/provider.dart';
 
-class CustomSearchBar extends StatefulWidget {
-  const CustomSearchBar({
+class SearchBarForJops extends StatefulWidget {
+  const SearchBarForJops({
     super.key,
     required this.searchController,
     this.inSearchScreen = false,
@@ -13,30 +14,33 @@ class CustomSearchBar extends StatefulWidget {
   final bool inSearchScreen;
 
   @override
-  State<CustomSearchBar> createState() => _CustomSearchBarState();
+  State<SearchBarForJops> createState() => _SearchBarForJopsState();
 }
 
-class _CustomSearchBarState extends State<CustomSearchBar> {
-  // GlobalKey<FormState> formKey = GlobalKey<FormState>();
+class _SearchBarForJopsState extends State<SearchBarForJops> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         height: 50,
         child: Consumer(builder: (context, ref, _) {
           return TextField(
+            // textAlign: TextAlign.,
             autofocus: widget.inSearchScreen ? true : false,
 
             controller: widget.searchController,
             onSubmitted: (value) async {
+              // LocalDataBase.getSearchJop(
+              //   ref.watch(providerr).user!,
+              ref.watch(providerr).setSearch(value.trim());
+              // );
               if (value.isEmpty) {
                 return;
               }
               setState(() {
                 widget.searchController.text = value;
               });
-              ref.read(providerr).getSearchedJobs(widget.searchController.text);
-              await Future.delayed(const Duration(milliseconds: 250));
-              print(value);
+              // ref.read(providerr).getSearchedJobs(widget.searchController.text);
+              await Future.delayed(const Duration(milliseconds: 400));
               if (widget.inSearchScreen) {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ResaultSearchScreen(jopname: value),
@@ -66,6 +70,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                     },
                     icon: Image.asset(
                       "assets/image/icons/close-circle.png",
+                      height: 25,
                       color: Colors.black,
                     ))),
           );

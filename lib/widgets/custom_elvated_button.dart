@@ -4,13 +4,13 @@ class CustomElvatedButton extends StatelessWidget {
   const CustomElvatedButton({
     super.key,
     required this.onpress,
-    required this.color,
-    this.text,
+    this.color,
+    required this.text,
   });
 
   final VoidCallback onpress;
-  final Color color;
-  final Text? text;
+  final Color? color;
+  final Text text;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class CustomElvatedButton extends StatelessWidget {
         shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30)))),
         minimumSize: const MaterialStatePropertyAll(Size(327, 48)),
-        backgroundColor: MaterialStatePropertyAll(color),
+        backgroundColor:
+            MaterialStatePropertyAll(color ?? const Color(0xff3366FF)),
       ),
       child: text,
     );
