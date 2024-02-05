@@ -168,7 +168,7 @@ class _JopDetailScreenState extends State<JopDetailScreen> {
                 ));
               },
               color: const Color(0xff3366FF)),
-          SizedBox(
+          const SizedBox(
             height: 20,
           )
         ],

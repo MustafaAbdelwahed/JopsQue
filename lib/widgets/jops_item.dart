@@ -109,9 +109,9 @@ class JopsItem extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Divider(
-              thickness: 1.5,
-            )
+            // const Divider(
+            //   thickness: 1.5,
+            // )
           ],
         ),
       ),

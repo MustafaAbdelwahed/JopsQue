@@ -62,14 +62,19 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
               CustomeTextFieldPAss(
                 errorText: "Password must be at least 8 characters",
                 validator: (value) {
-                  if (value == null || value.length <= 8) {
+                  if (value == null || value.length < 8) {
                     return 'Password must be at least 8 characters ';
                   }
                   return null;
                 },
                 textInputType: TextInputType.visiblePassword,
                 controller: _passwordController,
-                prefixIcons: Icons.lock_outline_rounded,
+                prefixImage: Image.asset(
+                  "assets/image/icons/lock.png",
+                  color: const Color(0xff9CA3AF),
+                  scale: 2.2,
+                ),
+                // prefixIcons: Icons.lock_outline_rounded,
                 suffixIcons: Icons.visibility_off,
                 hintext: "Password",
               ),
@@ -77,21 +82,33 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                 height: 20,
               ),
               CustomeTextFieldPAss(
+                isSameController: _passwordController,
                 errorText: "Both password must match",
+                // validator: (value) {
+                //   if (_passwordController.text == value) {
+                //     return "Both password must match";
+                //   }
+                //   return null;
+                // },
                 validator: (value) {
                   if (value == null ||
-                      value.length <= 8 &&
-                          _passwordController.text ==
-                              _verfiyPasswordController.text) {
+                      value.length < 8 ||
+                      _passwordController.text != value) {
                     return "Both password must match";
                   }
                   return null;
                 },
+
                 textInputType: TextInputType.visiblePassword,
                 controller: _verfiyPasswordController,
-                prefixIcons: Icons.lock_outline_rounded,
+                prefixImage: Image.asset(
+                  "assets/image/icons/lock.png",
+                  color: const Color(0xff9CA3AF),
+                  scale: 2.2,
+                ),
+                // prefixIcons: Icons.lock_outline_rounded,
                 suffixIcons: Icons.visibility_off,
-                hintext: "Password",
+                hintext: "Verify Password",
               ),
               const SizedBox(height: 20),
 
@@ -114,7 +131,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     return;
                   }
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const PasswordChangedSuccesfully(),
+                    builder: (context) => PasswordChangedSuccesfully(),
                   ));
                 },
               ),

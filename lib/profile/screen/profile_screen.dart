@@ -13,9 +13,20 @@ import 'package:graduated_project/provider/provider.dart';
 
 import '../widget/profile_item.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
-  final TextEditingController _aboutController = TextEditingController();
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final TextEditingController _aboutController = TextEditingController(
+      text:
+          "I'm Rafif Dian Axelingga, I’m UI/UX Designer, I have experience designing UI Design for approximately 1 year. I am currently joining the Vektora studio team based in Surakarta, Indonesia.I am a person who has a high spirit and likes to work to achieve what I dream of.");
+  // String apout =
+  //     "I'm Rafif Dian Axelingga, I’m UI/UX Designer, I have experience designing UI Design for approximately 1 year. I am currently joining the Vektora studio team based in Surakarta, Indonesia.I am a person who has a high spirit and likes to work to achieve what I dream of.";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +34,9 @@ class ProfileScreen extends StatelessWidget {
         body: NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverAppBar(
-          leading: SizedBox(),
+          leading: const SizedBox(),
           backgroundColor: const Color(0xffd6e4ff),
-          title: Text(
+          title: const Text(
             // textAlign: TextAlign.start,
             'Profile',
             style: TextStyle(
@@ -40,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                     ref.read(providerr).logOut();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => const LoginScreen(),
                         ),
                         (route) => false);
                   },
@@ -49,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                     width: 30,
                   ));
             }),
-            SizedBox(
+            const SizedBox(
               width: 10,
             )
           ],
@@ -65,8 +76,8 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 100,
                 color: const Color(0xffd6e4ff),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 10,
                   ),
                   // child: Column(
@@ -253,6 +264,84 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             // Spacer(),
                             GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20))),
+                                  context: context,
+                                  builder: (context) {
+                                    return SingleChildScrollView(
+                                      child: Container(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom),
+                                        // height:
+                                        //     MediaQuery.of(context).size.height *
+                                        //         0.5,
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              right: 15,
+                                              left: 15,
+                                              top: 30,
+                                              bottom: 20),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.stretch,
+                                            children: [
+                                              const Text(
+                                                "About",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              const SizedBox(
+                                                height: 8,
+                                              ),
+                                              TextField(
+                                                autofocus: true,
+                                                controller: _aboutController,
+                                                decoration: const InputDecoration(
+                                                    border:
+                                                        OutlineInputBorder()),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ), // const Spacer(),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 120),
+                                                child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        100)),
+                                                        backgroundColor:
+                                                            const Color(
+                                                                0xff3366FF)),
+                                                    onPressed: () {
+                                                      setState(() {});
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text("Save")),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                               child: const Text(
                                 "Edit",
                                 style: TextStyle(
@@ -268,10 +357,10 @@ class ProfileScreen extends StatelessWidget {
                         //   controller: _aboutController,
                         //   readOnly: true,
                         // )
-                        const Text(
-                          "I'm Rafif Dian Axelingga, I’m UI/UX Designer, I have experience designing UI Design for approximately 1 year. I am currently joining the Vektora studio team based in Surakarta, Indonesia.I am a person who has a high spirit and likes to work to achieve what I dream of.",
-                          strutStyle: StrutStyle(height: 1.5),
-                          style: TextStyle(fontSize: 14),
+                        Text(
+                          _aboutController.text,
+                          strutStyle: const StrutStyle(height: 1.5),
+                          style: const TextStyle(fontSize: 14),
                         )
                       ],
                     ),

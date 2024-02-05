@@ -45,31 +45,28 @@ class EditProfileScreen extends ConsumerWidget {
                 child: CircleAvatar(
                   radius: 45,
                   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(0), // Border radius
-                    child: ClipOval(
-                      child: Stack(
-                        children: [
-                          Opacity(
-                            opacity: 0.7,
-                            child: Image.asset(
-                              "assets/image/profile/Profile.png",
-                              scale: 0.2,
-                              fit: BoxFit.cover,
-                              height: 150,
-                              width: 100,
-                            ),
+                  child: ClipOval(
+                    child: Stack(
+                      children: [
+                        Opacity(
+                          opacity: 0.7,
+                          child: Image.asset(
+                            "assets/image/profile/Profile.png",
+                            scale: 0.5,
+                            fit: BoxFit.cover,
+                            height: 150,
+                            width: 100,
                           ),
-                          Center(
-                            child: Image.asset(
-                              "assets/image/icons/camera.png",
-                              fit: BoxFit.cover,
-                              width: 40,
-                              height: 40,
-                            ),
+                        ),
+                        Center(
+                          child: Image.asset(
+                            "assets/image/icons/camera.png",
+                            fit: BoxFit.cover,
+                            width: 40,
+                            height: 40,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

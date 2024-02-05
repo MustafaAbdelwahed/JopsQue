@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:dio/dio.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +5,6 @@ import 'package:graduated_project/apply_jop/screen/biodata_screen.dart';
 import 'package:graduated_project/apply_jop/screen/successfully_sent_data_screen.dart';
 import 'package:graduated_project/apply_jop/screen/type_of_work._screen.dart';
 import 'package:graduated_project/apply_jop/screen/upload_portfolio.dart';
-import 'package:graduated_project/database/local_database.dart';
 import 'package:graduated_project/model/jops.dart';
 import 'package:graduated_project/provider/provider.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
@@ -237,7 +233,7 @@ class _ApplyJopScreenState extends State<ApplyJopScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Consumer(builder: (context, ref, _) {
@@ -275,7 +271,12 @@ class _ApplyJopScreenState extends State<ApplyJopScreen> {
                         }
                       case 2:
                         if (ref.watch(providerr).pdfData != null) {
-                          sentDataToapplyJop(ref);
+                          ref.watch(providerr).sentDataToapplyJop(
+                              nameController.text,
+                              emailController.text,
+                              phoneController.text,
+                              widget.jop.jobTimeType,
+                              widget.jop.id);
 
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
@@ -292,31 +293,31 @@ class _ApplyJopScreenState extends State<ApplyJopScreen> {
     );
   }
 
-  Future<Void?> sentDataToapplyJop(WidgetRef ref) async {
-    Dio dio = Dio();
-    int id = await LocalDataBase.getID();
-    String token = await LocalDataBase.getToken();
-    final response = await dio.post(
-      'https://project2.amit-learning.com/api/apply',
-      data: {
-        // 'cv_file': null,
-        'name': nameController.text,
-        'email': emailController.text,
-        'mobile': phoneController.text,
-        'work_type': widget.jop.jobTimeType,
-        // 'other_file': null,
+  // Future<Void?> sentDataToapplyJop(WidgetRef ref) async {
+  //   Dio dio = Dio();
+  //   int id = await LocalDataBase.getID();
+  //   String token = await LocalDataBase.getToken();
+  //   final response = await dio.post(
+  //     'https://project2.amit-learning.com/api/apply',
+  //     data: {
+  //       // 'cv_file': null,
+  //       'name': nameController.text,
+  //       'email': emailController.text,
+  //       'mobile': phoneController.text,
+  //       'work_type': widget.jop.jobTimeType,
+  //       // 'other_file': null,
 
-        'jobs_id': widget.jop.id,
-        'user_id': id
-      },
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-        'Content-Type': 'application/json',
-        "Accept": "application/json",
-      }, validateStatus: (_) => true),
-    );
-    print(response);
+  //       'jobs_id': widget.jop.id,
+  //       'user_id': id
+  //     },
+  //     options: Options(headers: {
+  //       'Authorization': 'Bearer $token',
+  //       'Content-Type': 'application/json',
+  //       "Accept": "application/json",
+  //     }, validateStatus: (_) => true),
+  //   );
+  //   print(response);
 
-    return null;
-  }
+  //   return null;
+  // }
 }

@@ -52,8 +52,7 @@ class _UploadPortfolioScreenState extends State<UploadPortfolioScreen> {
                     const TextSpan(
                         text: "*    ", style: TextStyle(color: Colors.red)),
                     TextSpan(
-                        text:
-                            "${prov.pdfData == null ? "this Field Required" : ""}",
+                        text: prov.pdfData == null ? "this Field Required" : "",
                         style: const TextStyle(color: Colors.red))
                   ]),
             ),
@@ -63,7 +62,7 @@ class _UploadPortfolioScreenState extends State<UploadPortfolioScreen> {
             ListTile(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(color: const Color(0xffD1D5DB))),
+                  side: const BorderSide(color: Color(0xffD1D5DB))),
               leading: Image.asset(
                 "assets/image/logo/pdf.png",
                 height: 40,

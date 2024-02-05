@@ -3,9 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/home/show_modal_bottom_sheet.dart';
 import 'package:graduated_project/provider/provider.dart';
 import 'package:graduated_project/widgets/custom_chip.dart';
-import 'package:graduated_project/widgets/custom_elvated_button.dart';
 import 'package:graduated_project/widgets/search_bar_for_jops.dart';
-import 'package:graduated_project/widgets/text_field/custom_textfield.dart';
 
 class ResaultSearchScreen extends StatefulWidget {
   ResaultSearchScreen({super.key, required this.jopname});
@@ -20,7 +18,6 @@ class ResaultSearchScreen extends StatefulWidget {
 
 class _ResaultSearchScreenState extends State<ResaultSearchScreen> {
   List<Widget> jops = [];
-//TODO Visibility in resault if empty
   @override
   Widget build(BuildContext context) {
     return Scaffold(

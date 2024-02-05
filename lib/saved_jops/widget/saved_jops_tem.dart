@@ -93,10 +93,13 @@ class SavedJopsItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.network(
-                  jop.image,
-                  width: 40,
-                  height: 40,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    jop.image,
+                    width: 40,
+                    height: 40,
+                  ),
                 ),
                 const SizedBox(
                   width: 20,
@@ -147,9 +150,9 @@ class SavedJopsItem extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Divider(
-              thickness: 1.5,
-            )
+            // const Divider(
+            //   thickness: 1.5,
+            // )
           ],
         ),
       ),

@@ -23,7 +23,6 @@ class _TwostepVerifyFirstScreenState extends State<TwostepVerifyFirstScreen> {
   @override
   void initState() {
     super.initState();
-    print(isShacked);
   }
 
   @override
@@ -57,11 +56,9 @@ class _TwostepVerifyFirstScreenState extends State<TwostepVerifyFirstScreen> {
                 value: isShacked,
                 onChanged: (value) {
                   // ref.watch(providerr).switchVerify();
-                  print(isShacked);
                   setState(() {
                     isShacked = value;
                   });
-                  print(isShacked);
                 },
               ),
               const SizedBox(
@@ -216,7 +213,8 @@ class _TwostepVerifyFirstScreenState extends State<TwostepVerifyFirstScreen> {
                     }
                   }
                 },
-                text: widget.isShacked ? Text("Save") : Text("Next"),
+                text:
+                    widget.isShacked ? const Text("Save") : const Text("Next"),
               )
             ],
           );

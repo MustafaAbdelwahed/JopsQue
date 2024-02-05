@@ -45,7 +45,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                     fontWeight: FontWeight.w400)),
             const SizedBox(height: 30),
             CustomeTextField(
-              prefixIcons: Icon(Icons.email_outlined),
+              prefixImage: Image.asset(
+                "assets/image/icons/sms.png",
+                scale: 2.2,
+              ),
+              // prefixIcons: Icon(Icons.email_outlined),
               hintext: "Enter your email....",
               controller: _emailControl,
             ),
@@ -62,8 +66,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
                   },
                   child: const Text(
                     "Login",
@@ -80,7 +84,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               text: const Text("Request password reset"),
               onpress: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CheckEmailScreen(),
+                  builder: (context) => const CheckEmailScreen(),
                 ));
               },
               color: const Color(0xff3366FF),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/home/screen/resault_search_screen.dart';
+import 'package:graduated_project/home/widget/popular_searches.dart';
 import 'package:graduated_project/provider/provider.dart';
 import 'package:graduated_project/widgets/search_bar_for_jops.dart';
 
@@ -104,82 +105,34 @@ class SearchScreen extends StatelessWidget {
   }
 }
 
-class RecentSearches extends StatelessWidget {
-  RecentSearches({super.key, required this.searchName});
+// class PopularSearches extends StatelessWidget {
+//   const PopularSearches({
+//     super.key,
+//   });
 
-  String searchName;
-  @override
-  Widget build(BuildContext context) {
-    return Consumer(builder: (context, ref, _) {
-      return InkWell(
-        onTap: () {
-          // ref.read(providerr).getSearchedJobs(searchName);
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ResaultSearchScreen(jopname: searchName),
-          ));
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: SizedBox(
-            width: double.infinity,
-            height: 30,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset("assets/image/icons/clock.png"),
-                const Spacer(),
-                Text(
-                  searchName,
-                ),
-                const Spacer(
-                  flex: 20,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    ref.watch(providerr).deleteSearch(searchName);
-                  },
-                  child: Image.asset(
-                    "assets/image/icons/close-circle.png",
-                    height: 23,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    });
-  }
-}
-
-class PopularSearches extends StatelessWidget {
-  const PopularSearches({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: SizedBox(
-        width: double.infinity,
-        height: 30,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.asset("assets/image/icons/search-status.png"),
-            const Spacer(),
-            const Text("Junior UI Designer"),
-            const Spacer(
-              flex: 20,
-            ),
-            Image.asset(
-              "assets/image/icons/circul-right-arrow.png",
-              height: 23,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(vertical: 5),
+//       child: SizedBox(
+//         width: double.infinity,
+//         height: 30,
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             Image.asset("assets/image/icons/search-status.png"),
+//             const Spacer(),
+//             const Text("Junior UI Designer"),
+//             const Spacer(
+//               flex: 20,
+//             ),
+//             Image.asset(
+//               "assets/image/icons/circul-right-arrow.png",
+//               height: 23,
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

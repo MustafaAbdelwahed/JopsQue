@@ -39,7 +39,7 @@ class _CustomeTextFieldState extends State<CustomeTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(fontWeight: FontWeight.w500),
+      style: const TextStyle(fontWeight: FontWeight.w500),
       // keyboardType: TextInputType.name,
       validator: widget.validator,
       // cursorColor: cursorColor ?? const Color(0xff3366FF),
@@ -54,9 +54,9 @@ class _CustomeTextFieldState extends State<CustomeTextField> {
         focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red),
             borderRadius: BorderRadius.all(Radius.circular(8))),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red),
-            borderRadius: const BorderRadius.all(Radius.circular(8))),
+            borderRadius: BorderRadius.all(Radius.circular(8))),
 
         // errorStyle: TextStyle(
         //     fontWeight: FontWeight.w400, color: errorColor(controller)),

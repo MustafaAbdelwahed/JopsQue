@@ -1,6 +1,6 @@
 import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
 import 'package:flutter/material.dart';
-import 'package:graduated_project/create_accoun/creat_confirm_screen.dart';
+import 'package:graduated_project/create_accoun/screen/creat_confirm_screen.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
 
 class PrefefredLocationScreeen extends StatefulWidget {
@@ -188,7 +188,6 @@ class _PrefefredLocationScreeenState extends State<PrefefredLocationScreeen> {
       } else {
         selectedChips.remove(chip);
       }
-      print(selectedChips);
     });
   }
 }

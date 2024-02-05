@@ -5,19 +5,23 @@ import 'package:flutter/material.dart';
 class CustomeTextFieldPAss extends StatefulWidget {
   const CustomeTextFieldPAss(
       {super.key,
-      required this.prefixIcons,
+      this.prefixIcons,
+      this.prefixImage,
       required this.suffixIcons,
       this.hintext,
       required this.controller,
+      this.isSameController,
       required this.textInputType,
       this.validator,
       required this.errorText});
 
   //  Bool ispas;
-  final IconData prefixIcons;
+  final IconData? prefixIcons;
+  final Image? prefixImage;
   final IconData? suffixIcons;
   final String? hintext;
   final TextEditingController controller;
+  final TextEditingController? isSameController;
   final TextInputType? textInputType;
   final String errorText;
 
@@ -55,14 +59,21 @@ class _CustomeTextFieldPAssState extends State<CustomeTextFieldPAss> {
                     widget.controller.text.length < 8 ? _color[2] : _color[4]),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor(widget.controller)),
+            borderSide: BorderSide(
+                color: borderColor(
+                    controller: widget.controller,
+                    isSameController: widget.isSameController)),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         errorText: widget.validator == null ? null : widget.errorText,
 
         errorStyle: TextStyle(
-            fontWeight: FontWeight.w400, color: errorColor(widget.controller)),
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: errorColor(
+                controller: widget.controller,
+                isSameController: widget.isSameController)),
         //prefix
-        prefixIcon: Icon(widget.prefixIcons),
+        prefixIcon: widget.prefixImage ?? Icon(widget.prefixIcons),
         prefixIconColor: const Color(0xff9ca3af),
         // focusColor: Color.fromARGB(255, 51, 255, 78),
         focusedBorder: const OutlineInputBorder(
@@ -78,7 +89,7 @@ class _CustomeTextFieldPAssState extends State<CustomeTextFieldPAss> {
                 visible = !visible;
               });
             },
-            icon: Icon(widget.suffixIcons)),
+            icon: Icon(visible ? Icons.visibility : Icons.visibility_off)),
         suffixIconColor: const Color.fromARGB(255, 97, 101, 109),
 
         hintText: widget.hintext,
@@ -86,29 +97,51 @@ class _CustomeTextFieldPAssState extends State<CustomeTextFieldPAss> {
     );
   }
 
-  Color errorColor(TextEditingController controller) {
+  Color errorColor(
+      {required TextEditingController controller,
+      TextEditingController? isSameController}) {
     Color thatColor;
     if (controller.text.isEmpty) {
       thatColor = _color[1];
     } else {
-      if (controller.text.length < 8 && controller.text.isNotEmpty) {
-        thatColor = _color[2];
+      if (isSameController == null || isSameController.text.isEmpty) {
+        if (controller.text.length < 8 && controller.text.isNotEmpty) {
+          thatColor = _color[2];
+        } else {
+          thatColor = _color[3];
+        }
       } else {
-        thatColor = _color[3];
+        if (controller.text.length < 8 && controller.text.isNotEmpty ||
+            controller.text != isSameController.text) {
+          thatColor = _color[2];
+        } else {
+          thatColor = _color[3];
+        }
       }
     }
     return thatColor;
   }
 
-  Color borderColor(TextEditingController controller) {
+  Color borderColor(
+      {required TextEditingController controller,
+      TextEditingController? isSameController}) {
     Color thatColor;
     if (controller.text.isEmpty) {
       thatColor = _color[0];
     } else {
-      if (controller.text.length < 8 || controller.text.isEmpty) {
-        thatColor = _color[2];
+      if (isSameController == null) {
+        if (controller.text.length < 8 && controller.text.isNotEmpty) {
+          thatColor = _color[2];
+        } else {
+          thatColor = _color[0];
+        }
       } else {
-        thatColor = _color[0];
+        if (controller.text.length < 8 && controller.text.isNotEmpty ||
+            controller.text != isSameController.text) {
+          thatColor = _color[2];
+        } else {
+          thatColor = _color[0];
+        }
       }
     }
     return thatColor;

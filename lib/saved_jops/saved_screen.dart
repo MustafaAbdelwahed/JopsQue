@@ -72,9 +72,20 @@ class SavedScreen extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 15, left: 15),
-                            child: Column(
-                              children: prov.savedJops,
-                            ),
+                            child: ListView.separated(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) =>
+                                    ref.watch(providerr).savedJops[index],
+                                separatorBuilder: (context, index) =>
+                                    const Divider(
+                                      thickness: 1.5,
+                                    ),
+                                itemCount:
+                                    ref.watch(providerr).savedJops.length),
+                            // child: Column(
+                            //   children: prov.savedJops,
+                            // ),
                           )
                         ],
                       ),

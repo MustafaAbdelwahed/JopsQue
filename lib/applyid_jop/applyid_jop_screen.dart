@@ -3,7 +3,6 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/apply_jop/apply_jop_screen.dart';
-import 'package:graduated_project/jop_detail/jop_detail_screen.dart';
 import 'package:graduated_project/model/jops.dart';
 import 'package:graduated_project/provider/provider.dart';
 import 'package:graduated_project/message/widget/saved_icon.dart';
@@ -171,7 +170,7 @@ class RejectedApplyiedJop extends StatelessWidget {
               fontSize: 24,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           const Text(
@@ -217,9 +216,18 @@ class ActiveApplyidJop extends StatelessWidget {
           ),
           Expanded(
             child: SingleChildScrollView(
-              child: Column(
-                children: ref.watch(providerr).activeJop,
-              ),
+              child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) =>
+                      ref.watch(providerr).activeJop[index],
+                  separatorBuilder: (context, index) => const Divider(
+                        thickness: 1.5,
+                      ),
+                  itemCount: ref.watch(providerr).activeJop.length),
+              // child: Column(
+              //   children: ref.watch(providerr).activeJop,
+              // ),
             ),
           )
         ],
@@ -528,11 +536,11 @@ class AppliedJopItem extends StatelessWidget {
             ),
           ),
         ),
-        const Divider(
-          // indent: 20,
-          // endIndent: 20,
-          thickness: 1.5,
-        ),
+        // const Divider(
+        //   // indent: 20,
+        //   // endIndent: 20,
+        //   thickness: 1.5,
+        // ),
       ],
     );
   }

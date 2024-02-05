@@ -15,6 +15,7 @@ import 'package:graduated_project/widgets/custom_search.dart';
 // import 'package:graduated_project/saved_jops/widget/saved_jops_item.dart';
 
 import '../database/local_database.dart';
+import '../home/widget/recent_searches.dart';
 import '../model/jops.dart';
 import '../widgets/jops_item.dart';
 
@@ -36,12 +37,16 @@ class JopProvider extends ChangeNotifier {
   PlatformFile? pdfData;
   User? user;
   bool isSwitchingVerify = false;
-  bool isTsvVerify = false;
-/////////////////////////////////////////////getJops
+  bool isTwoStepVerify = false;
+/////////////////////////////////////////////jops
 
   Future<void> getJops() async {
     Dio dio = Dio();
-    String token = await LocalDataBase.getToken() ?? user!.token;
+    String token = user?.token ?? await LocalDataBase.getToken();
+    int userID = user?.id ?? await LocalDataBase.getID();
+
+    List? savedJopsId = await LocalDataBase.getSaveJops(userID);
+
     final response = await dio.get(
       "https://project2.amit-learning.com/api/jobs",
       options: Options(headers: {
@@ -58,24 +63,38 @@ class JopProvider extends ChangeNotifier {
     if (listOfJops.isEmpty) {
     } else {
       for (var element in response.data['data']) {
+        Jops jop = Jops.fromJson(element);
+        if (savedJopsId != null && savedJopsId.isNotEmpty) {
+          for (var savejop in savedJopsId) {
+            if (savejop == jop.id.toString()) {
+              savedJops.add(SavedJopsItem(jop: jop));
+              jop.isSaved = true;
+            }
+          }
+        }
+
         allJops.add(JopsItem(
-          jop: Jops.fromJson(element),
+          jop: jop,
         ));
+
         activeJop.add(AppliedJopItem(
-          jop: Jops.fromJson(element),
+          jop: jop,
         ));
       }
     }
     notifyListeners();
   }
 
+  Future setSaveJops(int jopID) async {
+    // await Future.delayed(const Duration(seconds: 1));
+    int userID = user?.id ?? await LocalDataBase.getID();
+    LocalDataBase.setSaveJops(userID.toString(), jopID.toString());
+    // print("the id : ${userID}");
+  }
+
 /////////////////////////////////////////////about user
-  ///
-  Future login(
-    String email,
-    String password,
-    bool isRmember,
-  ) async {
+
+  Future login(String email, String password, bool isRmember) async {
     Dio dio = Dio();
     final response = await dio.post(
       "https://project2.amit-learning.com/api/auth/login",
@@ -87,14 +106,11 @@ class JopProvider extends ChangeNotifier {
         "Accept": "application/json",
       }, validateStatus: (_) => true),
     );
-    print(response);
-    if (!response.data['status']) {
+    if (response.statusCode != 200) {
       return false;
     } else {
       user = User.fromJson(response.data['user']);
       user!.token = response.data['token'];
-
-      print(user!.token);
 
       if (isRmember) {
         LocalDataBase.setUser(user!);
@@ -104,6 +120,8 @@ class JopProvider extends ChangeNotifier {
       // user = datauser;
       notifyListeners();
     }
+    getSearch();
+
     getJops();
     return true;
   }
@@ -115,7 +133,7 @@ class JopProvider extends ChangeNotifier {
     }
 
     Dio dio = Dio();
-    String token = user!.token ?? await LocalDataBase.getToken();
+    String token = user?.token ?? await LocalDataBase.getToken();
     final response = await dio.get(
       "https://project2.amit-learning.com/api/auth/profile",
       options: Options(headers: {
@@ -136,7 +154,7 @@ class JopProvider extends ChangeNotifier {
   Future<void> editUser() async {
     Dio dio = Dio();
     String token = user?.token ?? await LocalDataBase.getToken();
-    final response = await dio.put(
+    await dio.put(
       "https://project2.amit-learning.com/api/user/profile/portofolios",
       data: {
         "bio": user?.bio,
@@ -160,11 +178,10 @@ class JopProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-//TODO  changePassword
   Future<void> changePassword() async {
     Dio dio = Dio();
-    String token = user!.token ?? await LocalDataBase.getToken();
-    final response = await dio.post(
+    String token = user?.token ?? await LocalDataBase.getToken();
+    await dio.post(
       "https://project2.amit-learning.com/api/auth/user/update",
       data: {"password": user?.password},
       options: Options(headers: {
@@ -174,12 +191,25 @@ class JopProvider extends ChangeNotifier {
       }, validateStatus: (_) => true),
     );
 
-    notifyListeners();
+    // notifyListeners();
   }
 
   void logOut() {
     user = null;
-    LocalDataBase.clearAll();
+    allJops = [];
+    recentSearches = [];
+    portfolioList = {};
+    savedJops = [];
+    activeJop = [];
+    filterJops = [];
+    messageList = [];
+    messagesItem = [];
+    typeOfWork = null;
+    pdfData = null;
+    user = null;
+    isSwitchingVerify = false;
+    isTwoStepVerify = false;
+    LocalDataBase.deleteUser();
     notifyListeners();
   }
 
@@ -187,8 +217,8 @@ class JopProvider extends ChangeNotifier {
   Future<void> getMessage() async {
     Dio dio = Dio();
     // String token = await LocalDataBase.getToken() ?? user!.token;
-    String token = user!.token ?? await LocalDataBase.getToken();
-    int id = user!.id ?? await LocalDataBase.getID();
+    String token = user?.token ?? await LocalDataBase.getToken();
+    // int id = user!.id ?? await LocalDataBase.getID();
     final companyResponse = await dio.get(
       "https://project2.amit-learning.com/api/showCompany",
       options: Options(headers: {
@@ -229,18 +259,15 @@ class JopProvider extends ChangeNotifier {
   }
 
 /////////////////////////////////////////////searchJops
-  Future<void> getSearchedJobs(
-    String? name,
-  ) async {
+  Future<void> searchJobs(String? nameOfJop) async {
     filterJops.clear();
-
     Dio dio = Dio();
     // String token =  await LocalDataBase.getToken();
-    String token = user!.token ?? await LocalDataBase.getToken();
+    String token = user?.token ?? await LocalDataBase.getToken();
     final response = await dio.post(
       "https://project2.amit-learning.com/api/jobs/filter",
       data: {
-        'name': name,
+        'name': nameOfJop,
       },
       options: Options(headers: {
         'Authorization': 'Bearer $token',
@@ -248,6 +275,7 @@ class JopProvider extends ChangeNotifier {
         "Accept": "application/json",
       }, validateStatus: (_) => true),
     );
+
     List listOfJops = response.data['data'];
     if (listOfJops.isEmpty) {
     } else {
@@ -263,8 +291,6 @@ class JopProvider extends ChangeNotifier {
 /////////////////////////////////////////////filterJop
   Future<void> getFilterdJobs(
       {String? name, String? location, String? salary}) async {
-    //TODO add filter Jops
-
     filterJops.clear();
     Dio dio = Dio();
     String token = await LocalDataBase.getToken();
@@ -310,10 +336,10 @@ class JopProvider extends ChangeNotifier {
 /////////////////////////////////////////////about Jops
 
   void savedJop(Jops jops) async {
-    savedJops.add(SavedJopsItem(
-      // key: ValueKey(jops.id),
-      jop: jops,
-    ));
+    savedJops.add(SavedJopsItem(jop: jops));
+
+    int userID = user?.id ?? await LocalDataBase.getID();
+    LocalDataBase.setSaveJops(userID.toString(), jops.id.toString());
     jops.isSaved = true;
 
     // int insexAllJop = allJops.indexWhere((element) => element.jop.id == jops.id);
@@ -328,6 +354,9 @@ class JopProvider extends ChangeNotifier {
   void unsaveJop(Jops jops) async {
     jops.isSaved = false;
     savedJops.removeWhere((element) => element.jop.id == jops.id);
+    int userID = user?.id ?? await LocalDataBase.getID();
+
+    LocalDataBase.deleteSaveJops(userID.toString(), jops.id.toString());
 
     // int index = allJops.indexWhere((element) => element.jop.id == jops.id);
     allJops[allJops.indexWhere((element) => element.jop.id == jops.id)] =
@@ -373,7 +402,7 @@ class JopProvider extends ChangeNotifier {
 
 //////////////////////////////actev TWo Step verify
   void verifyde() async {
-    isTsvVerify = !isTsvVerify;
+    isTwoStepVerify = !isTwoStepVerify;
     notifyListeners();
   }
 
@@ -399,14 +428,11 @@ class JopProvider extends ChangeNotifier {
 
   void setSearch(String searchName) async {
     LocalDataBase.setRecentSearche(user!, searchName);
-    getSearchedJobs(searchName);
-    print("////////////////////////////////////////////////////////");
+    searchJobs(searchName);
 
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future.delayed(const Duration(milliseconds: 1500));
     recentSearches.removeWhere((element) => element.searchName == searchName);
     recentSearches.insert(0, RecentSearches(searchName: searchName));
-
-    print(searchName);
 
     notifyListeners();
   }
@@ -414,11 +440,37 @@ class JopProvider extends ChangeNotifier {
   void deleteSearch(String searchName) async {
     LocalDataBase.deleteRecentSearche(user!, searchName);
 
-    print(searchName);
-
     recentSearches.removeWhere((element) => element.searchName == searchName);
 
     // recentSearches.add(RecentSearches(searchName: searchName));
     notifyListeners();
+  }
+
+  Future<Void?> sentDataToapplyJop(name, email, mobile, workType, jopId) async {
+    Dio dio = Dio();
+    // String token = await LocalDataBase.getToken();
+    int id = user!.id ?? await LocalDataBase.getID();
+    String token = user?.token ?? await LocalDataBase.getToken();
+    final response = await dio.post(
+      'https://project2.amit-learning.com/api/apply',
+      data: {
+        // 'cv_file': null,
+        'name': name,
+        'email': email,
+        'mobile': mobile,
+        'work_type': workType,
+        // 'other_file': null,
+
+        'jobs_id': jopId,
+        'user_id': id
+      },
+      options: Options(headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+        "Accept": "application/json",
+      }, validateStatus: (_) => true),
+    );
+
+    return null;
   }
 }

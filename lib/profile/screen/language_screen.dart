@@ -62,7 +62,6 @@ class _LanguageScreenState extends State<LanguageScreen> {
               onChanged: (value) {
                 setState(() {
                   selectLang = value!;
-                  print(selectLang);
                 });
               },
             );

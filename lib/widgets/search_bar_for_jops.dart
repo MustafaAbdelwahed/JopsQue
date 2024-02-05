@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/database/local_database.dart';
@@ -51,6 +53,7 @@ class _SearchBarForJopsState extends State<SearchBarForJops> {
             // selectionHeightStyle: BoxHeightStyle.tight,
             cursorColor: const Color.fromARGB(121, 139, 136, 136),
             decoration: InputDecoration(
+                contentPadding: const EdgeInsets.only(left: 10),
                 prefixIconColor: Colors.black,
                 focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xffD1D5DB)),

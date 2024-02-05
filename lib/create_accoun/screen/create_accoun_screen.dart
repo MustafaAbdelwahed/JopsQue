@@ -1,12 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:graduated_project/create_accoun/work_interested_screen.dart';
+import 'package:graduated_project/create_accoun/screen/work_interested_screen.dart';
 import 'package:graduated_project/widgets/logo_app.dart';
 
-import '../widgets/logos.dart';
-import '../widgets/custom_elvated_button.dart';
-import '../widgets/text_field/custom_textfield.dart';
-import '../widgets/text_field/custom_textfield_pass.dart';
+import '../../widgets/logos.dart';
+import '../../widgets/custom_elvated_button.dart';
+import '../../widgets/text_field/custom_textfield.dart';
+import '../../widgets/text_field/custom_textfield_pass.dart';
 
 class CreateAccounScreen extends StatefulWidget {
   const CreateAccounScreen({super.key});
@@ -65,13 +67,21 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
 
               CustomeTextField(
                 controller: _usernameController,
-                prefixIcons: const Icon(Icons.person_outline),
+                prefixImage: Image.asset(
+                  "assets/image/icons/profile.png",
+                  scale: 2.5,
+                ),
+                // prefixIcons: const Icon(Icons.person_outline),
                 hintext: "Username",
               ),
               const SizedBox(height: 16),
               CustomeTextField(
                 controller: _emailController,
-                prefixIcons: const Icon(Icons.email_outlined),
+                prefixImage: Image.asset(
+                  "assets/image/icons/sms.png",
+                  scale: 2.5,
+                ),
+                // prefixIcons: const Icon(Icons.email_outlined),
                 hintext: "Email",
               ),
               const SizedBox(height: 16),
@@ -88,15 +98,20 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
                   },
                   textInputType: TextInputType.visiblePassword,
                   controller: _passwordController,
-                  prefixIcons: Icons.lock_outline_rounded,
+                  prefixImage: Image.asset(
+                    "assets/image/icons/lock.png",
+                    color: const Color(0xff9CA3AF),
+                    scale: 2.5,
+                  ),
+                  // prefixIcons: Icons.lock_outline_rounded,
                   suffixIcons: Icons.visibility_off,
                   hintext: "Password",
                 ),
               ),
               const SizedBox(height: 20),
 
-              Expanded(
-                child: const SizedBox(
+              const Expanded(
+                child: SizedBox(
                     // height: 105,
                     ),
               ),
@@ -105,14 +120,19 @@ class _CreateAccounScreenState extends State<CreateAccounScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Already have an account?"),
+                  const Text(
+                    "Already have an account?",
+                    style: TextStyle(color: Color(0xff9CA3AF)),
+                  ),
                   const SizedBox(width: 6),
                   GestureDetector(
                       onTap: () {
                         Navigator.of(context).pop();
                       },
                       child: const Text("Login",
-                          style: TextStyle(color: Color(0XFF3366FF))))
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Color(0XFF3366FF))))
                 ],
               ),
               const SizedBox(

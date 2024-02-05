@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:graduated_project/home/bottom_navigation_bar_item.dart';
 
 import 'package:graduated_project/provider/provider.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';

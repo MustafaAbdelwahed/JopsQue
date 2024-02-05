@@ -23,7 +23,7 @@ class PortfolioScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 const Text(
@@ -48,7 +48,7 @@ class PortfolioScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 30),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: Color(0xffecf2ff)),
+                          color: const Color(0xffecf2ff)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -201,7 +201,7 @@ class PortfolioItem extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             )
           ],

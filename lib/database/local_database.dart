@@ -21,8 +21,7 @@ class LocalDataBase {
   static Future? getToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    print("//////////////////////////////////////////////////////fldmkfdkm//");
-    print(token);
+
     return token;
   }
 
@@ -37,10 +36,15 @@ class LocalDataBase {
     return id;
   }
 
-  static Future clearAll() async {
+  static Future deleteUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.clear();
+    prefs.remove('id');
+    prefs.remove('token');
   }
+  // static Future clearAll() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.clear();
+  // }
 
   static void setUser(User user) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -53,38 +57,27 @@ class LocalDataBase {
       // user.bio ?? "",
       // user.??"",
     ]);
-    print("/////////////////////////////");
-    print(user.name);
-    print(user.id);
-    print(user.email);
   }
 
   static void setRecentSearche(User user, String searchJop) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    print(user.id);
+
     List? temp = pref.getStringList("SearchJop ${user.id}");
     Set<String> search = {searchJop};
-    print("Search Before get from LocalDB : $search");
 
     if (temp != null) {
       search.addAll(pref.getStringList("SearchJop ${user.id}")!);
     }
-    print("Search After get from LocalDB : $search");
-
-    // print(search);
 
     pref.setStringList("SearchJop ${user.id}", search.toList());
   }
 
-  static Future? getRecentSearche(User user) async {
+  static Future getRecentSearche(User user) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     // await Future.delayed(const Duration(seconds: 1));
 
-    print("the id : ${user.id}");
-
     List? temp = pref.getStringList("SearchJop ${user.id}");
 
-    print("The All Searched Jop is : $temp");
     return temp;
   }
 
@@ -105,7 +98,6 @@ class LocalDataBase {
     User? user;
 
     if (us?[0] != null) {
-      print("The Is is not Empty ");
       user = User(
         id: int.parse(us![0]),
         name: us[1],
@@ -114,12 +106,41 @@ class LocalDataBase {
         // bio: us[4],
       );
     }
-    print("The Is is  Empty ");
 
     return user;
   }
-  //   static void setSaveJops(int jopsID) async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //  pref.setStringList(key, value)
-  // }
+
+  static void setSaveJops(String userID, String jopID) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    List? temp = pref.getStringList("save-jop $userID");
+    List<String> savedJop = [jopID];
+
+    if (temp != null) {
+      savedJop.addAll(pref.getStringList("save-jop $userID")!);
+    }
+
+    pref.setStringList("save-jop $userID", savedJop);
+  }
+
+  static Future getSaveJops(int userID) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    // await Future.delayed(const Duration(seconds: 1));
+
+    List? temp = pref.getStringList("save-jop $userID");
+
+    // print("The All Searched Jop is : $temp");
+    return temp;
+  }
+
+  static void deleteSaveJops(String userID, String jopID) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    List<String>? search = pref.getStringList("save-jop $userID");
+    if (search != null) {
+      search.removeWhere((element) => element == jopID);
+
+      pref.setStringList("save-jop $userID", search);
+    }
+  }
 }

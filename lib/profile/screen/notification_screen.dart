@@ -63,7 +63,7 @@ class _NotificationEditSCreenState extends State<NotificationEditSCreen> {
                   ),
                 ),
                 ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return SwitchListTile.adaptive(
@@ -72,8 +72,6 @@ class _NotificationEditSCreenState extends State<NotificationEditSCreen> {
                         onChanged: (value) {
                           setState(() {
                             jobNotification[keyOfJob[index]] = value;
-                            print(
-                                "The ${keyOfJob[index]}is now is :${jobNotification[keyOfJob[index]]}");
                           });
                         },
                       );
@@ -84,7 +82,7 @@ class _NotificationEditSCreenState extends State<NotificationEditSCreen> {
                           thickness: 1.5,
                         ),
                     itemCount: jobNotification.length),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -99,7 +97,7 @@ class _NotificationEditSCreenState extends State<NotificationEditSCreen> {
                   ),
                 ),
                 ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return SwitchListTile.adaptive(
@@ -108,8 +106,6 @@ class _NotificationEditSCreenState extends State<NotificationEditSCreen> {
                         onChanged: (value) {
                           setState(() {
                             otherNotification[keyOfOther[index]] = value;
-                            print(
-                                "The ${keyOfOther[index]}is now is :${otherNotification[keyOfOther[index]]}");
                           });
                         },
                       );

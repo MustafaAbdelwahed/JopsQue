@@ -46,6 +46,7 @@ dependencies:
   path: ^1.8.3
   flutter_popup_menu_button: ^0.0.1+5
   pinput: ^3.0.1
+  image_picker: ^1.0.7
   
   
 

@@ -3,7 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:graduated_project/create_accoun/create_accoun_screen.dart';
+import 'package:graduated_project/create_accoun/screen/create_accoun_screen.dart';
 import 'package:graduated_project/database/local_database.dart';
 import 'package:graduated_project/forgot_password/forgot_password_screen.dart';
 import 'package:graduated_project/home/bottom_navigation_bar_item.dart';
@@ -98,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Row(
                   children: [
                     Checkbox(
+                      side: const BorderSide(color: Color(0xff9CA3AF)),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6)),
                       value: isRmember,
@@ -133,14 +134,20 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Dont’t have an account?"),
+                  const Text(
+                    "Dont’t have an account?",
+                    style: TextStyle(color: Color(0xff9CA3AF)),
+                  ),
                   const SizedBox(width: 6),
                   GestureDetector(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const CreateAccounScreen(),
                     )),
                     child: const Text("Register",
-                        style: TextStyle(color: Color(0XFF3366FF))),
+                        style: TextStyle(
+                          color: Color(0XFF3366FF),
+                          fontWeight: FontWeight.w500,
+                        )),
                   )
                 ],
               ),
@@ -187,7 +194,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Divider(thickness: 2),
                     ),
                     SizedBox(width: 25),
-                    Text("Or Login With Account"),
+                    Text(
+                      "Or Login With Account",
+                      style: TextStyle(color: Color(0xff6B7280)),
+                    ),
                     SizedBox(width: 25),
                     Expanded(
                       child: Divider(thickness: 2),

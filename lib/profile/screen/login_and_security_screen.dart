@@ -55,7 +55,7 @@ class LoginAndSecurityScreen extends StatelessWidget {
                   PhoneNumberScreen(),
                   ChangePasswordScreen(),
                   TwostepVerifyFirstScreen(
-                      isShacked: ref.read(providerr).isTsvVerify),
+                      isShacked: ref.read(providerr).isTwoStepVerify),
                 ];
                 return ListView.separated(
                   itemCount: accontAccess.length,
@@ -89,7 +89,7 @@ class LoginAndSecurityScreen extends StatelessWidget {
                                 )
                               : index == 3
                                   ? Text(
-                                      ref.watch(providerr).isTsvVerify
+                                      ref.watch(providerr).isTwoStepVerify
                                           ? "Active"
                                           : "Non active",
                                       style: TextStyle(

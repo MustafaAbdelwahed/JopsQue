@@ -60,7 +60,7 @@ class CustomChipWithArrow extends StatelessWidget {
       height: 32,
       width: 94,
       decoration: BoxDecoration(
-          border: Border.all(color: Color(0xffD1D5DB)),
+          border: Border.all(color: const Color(0xffD1D5DB)),
           color: chipColor ?? const Color(0xffD6E4FF),
           borderRadius: BorderRadius.circular(100)),
       child: Center(

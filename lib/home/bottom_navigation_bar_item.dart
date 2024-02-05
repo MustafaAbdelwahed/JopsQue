@@ -16,9 +16,9 @@ class BootomNavigator extends StatefulWidget {
 List body = <Widget>[
   const HomeScreen(),
   HomeMessageScreen(),
-  ApplyidJopScreen(),
+  const ApplyidJopScreen(),
   const SavedScreen(),
-  ProfileScreen(),
+  const ProfileScreen(),
 ];
 
 class _BootomNavigatorState extends State<BootomNavigator> {

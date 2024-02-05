@@ -149,8 +149,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               //   height: 20,
               // ),
               // const Spacer(),
-              Expanded(
-                child: const SizedBox(
+              const Expanded(
+                child: SizedBox(
                     // height: 250,
                     ),
               ),
@@ -163,9 +163,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             _newPasswordController.text;
                         ref.watch(providerr).changePassword();
                         Navigator.of(context).pop();
-                      } else {
-                        print("wrong PAsswrd ");
-                      }
+                      } else {}
                     },
                     text: const Text("Save"));
               })
