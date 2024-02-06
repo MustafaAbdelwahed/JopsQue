@@ -16,6 +16,7 @@ class User {
   String? personalDetailed;
   String? education;
   String? password;
+  String? image;
 
   User({
     required this.id,

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/model/company.dart';
+import 'package:graduated_project/provider/provider.dart';
 import 'package:graduated_project/widgets/text_field/custom_textfield.dart';
+
+import '../widget/company_message.dart';
+import '../widget/user_message.dart';
 
 class ChatScreen extends StatelessWidget {
   ChatScreen({
@@ -231,108 +236,6 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-class CompanyMessage extends StatelessWidget {
-  const CompanyMessage({
-    super.key,
-    required this.text,
-  });
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Container(
-          // width: 275,
-
-          constraints: const BoxConstraints(minWidth: 100, maxWidth: 275),
-          decoration: const BoxDecoration(
-            color: const Color(0xffE5E7EB),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8),
-              bottomLeft: Radius.circular(8),
-              bottomRight: Radius.circular(8),
-            ),
-          ),
-
-          child: Padding(
-            padding: const EdgeInsets.all((10)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  text,
-                  strutStyle: const StrutStyle(height: 1.3),
-                  // style: TextStyle(fontSize: 13),
-                ),
-                const SizedBox(height: 10),
-                const Row(mainAxisSize: MainAxisSize.min, children: [
-                  Text(
-                    "10.18",
-                    style: TextStyle(color: Color(0xff9CA3AF), fontSize: 12),
-                  )
-                ])
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class UserMessage extends StatelessWidget {
-  const UserMessage({
-    super.key,
-    required this.text,
-  });
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Container(
-          constraints: const BoxConstraints(minWidth: 100, maxWidth: 275),
-          decoration: const BoxDecoration(
-              color: Color(0xff3366FF),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(8),
-                bottomLeft: Radius.circular(8),
-                bottomRight: Radius.circular(8),
-              )),
-          child: Padding(
-            padding: const EdgeInsets.all((10)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  text,
-                  style: const TextStyle(color: Colors.white),
-                  strutStyle: const StrutStyle(height: 1.3),
-                  // style: TextStyle(fontSize: 13),
-                ),
-                const SizedBox(height: 10),
-                const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "10.18",
-                      style: TextStyle(color: Color(0xffE5E7EB), fontSize: 12),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class CustomTextMessage extends StatelessWidget {
   const CustomTextMessage({
     super.key,
@@ -343,19 +246,32 @@ class CustomTextMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      // maxLines: 200,
-      controller: _messageController,
-      decoration: const InputDecoration(
-          contentPadding: EdgeInsets.only(left: 20),
-          focusColor: Colors.amber,
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xffD1D5DB)),
-              borderRadius: BorderRadius.all(Radius.circular(100))),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xffD1D5DB)),
-              borderRadius: BorderRadius.all(Radius.circular(100))),
-          hintText: "Write a message..."),
+    return Builder(
+      builder: (context) {
+        return Consumer(
+          builder: (context,ref,_) {
+            return TextFormField(
+              onFieldSubmitted: (value) {
+                // ref.read(providerr).
+                print(value);
+                
+              },
+              // maxLines: 200,
+              controller: _messageController,
+              decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 20),
+                  focusColor: Colors.amber,
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffD1D5DB)),
+                      borderRadius: BorderRadius.all(Radius.circular(100))),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffD1D5DB)),
+                      borderRadius: BorderRadius.all(Radius.circular(100))),
+                  hintText: "Write a message..."),
+            );
+          }
+        );
+      }
     );
   }
 }

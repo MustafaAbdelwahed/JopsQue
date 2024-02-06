@@ -16,13 +16,6 @@ class LoginAndSecurityScreen extends StatelessWidget {
     "Two-step verification",
     "Face ID",
   ];
-  // String email = "";
-  // List<Widget>? onPress = [
-  //   EmailAdressScreen(),
-  //   PhoneNumberScreen(),
-  //   ChangePasswordScreen(),
-  //    TwostepVerifyFirstScreen(isShacked: ),
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +45,8 @@ class LoginAndSecurityScreen extends StatelessWidget {
               Consumer(builder: (context, ref, _) {
                 List<Widget>? onPress = [
                   EmailAdressScreen(),
-                  PhoneNumberScreen(),
-                  ChangePasswordScreen(),
+                  const PhoneNumberScreen(),
+                  const ChangePasswordScreen(),
                   TwostepVerifyFirstScreen(
                       isShacked: ref.read(providerr).isTwoStepVerify),
                 ];
@@ -82,7 +75,7 @@ class LoginAndSecurityScreen extends StatelessWidget {
                           index == 0
                               ? Text(
                                   ref.watch(providerr).user!.email!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     // fontSize: 16,
                                     color: Color(0xff6B7280),
                                   ),
@@ -92,7 +85,7 @@ class LoginAndSecurityScreen extends StatelessWidget {
                                       ref.watch(providerr).isTwoStepVerify
                                           ? "Active"
                                           : "Non active",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         // fontSize: 16,
                                         color: Color(0xff6B7280),
                                       ),

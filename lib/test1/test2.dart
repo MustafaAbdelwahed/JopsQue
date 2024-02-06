@@ -1,49 +1,64 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:graduated_project/provider/provider.dart';
-// import 'package:riverpod/riverpod.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-// // final myVariableProvider = Provider<String>((ref) {
-// //   String email = ref.watch(providerr).user!.email;
-// //   return email;
-// // });
+void main() {
+  runApp(const MyApp());
+}
 
-// class MyWidget extends ConsumerWidget {
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     // Access the value provided by myVariableProvider
-//     final myVariable = ref.watch(providerr).user!.email;
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Using WidgetRef'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Text('My Variable Value: $myVariable'),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Use WidgetRef to perform additional operations
-//                 // final length = ref.read(myVariableProvider).length;
-//                 print('Length of myVariable: $length');
-//               },
-//               child: Text('Print Length'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Image Picker Example',
+      home: ImagePickerButton(),
+    );
+  }
+}
 
-// void main() {
-//   runApp(
-//     ProviderScope(
-//       child: MaterialApp(
-//         home: MyWidget(),
-//       ),
-//     ),
-//   );
-// }
+class ImagePickerButton extends StatefulWidget {
+  const ImagePickerButton({super.key});
+
+  @override
+  _ImagePickerButtonState createState() => _ImagePickerButtonState();
+}
+
+class _ImagePickerButtonState extends State<ImagePickerButton> {
+  File? _image;
+
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await ImagePicker().pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Image Picker Example'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (_image != null)
+              Image.file(_image!, height: 200, width: 200)
+            else
+              const Text('No image selected'),
+            ElevatedButton(
+              onPressed: () => _pickImage(ImageSource.gallery),
+              child: const Text('Pick Image'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/apply_jop/apply_jop_screen.dart';
 import 'package:graduated_project/model/jops.dart';
 import 'package:graduated_project/provider/provider.dart';
-import 'package:graduated_project/message/widget/saved_icon.dart';
+import 'package:graduated_project/widgets/saved_icon.dart';
 
 import '../widgets/custom_chip.dart';
 

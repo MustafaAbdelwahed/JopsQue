@@ -5,7 +5,7 @@ import 'package:graduated_project/jop_detail/screen/company_screen.dart';
 import 'package:graduated_project/jop_detail/screen/people_screen.dart';
 import 'package:graduated_project/model/jops.dart';
 import 'package:graduated_project/widgets/custom_chip.dart';
-import 'package:graduated_project/message/widget/saved_icon.dart';
+import 'package:graduated_project/widgets/saved_icon.dart';
 
 import '../widgets/custom_elvated_button.dart';
 import 'screen/descreption_screen.dart';

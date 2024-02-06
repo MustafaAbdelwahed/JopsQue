@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/home/screen/resault_search_screen.dart';
-import 'package:graduated_project/provider/provider.dart';
 
 class CustomSearch extends StatefulWidget {
   const CustomSearch({
@@ -65,18 +64,6 @@ class _CustomSearchState extends State<CustomSearch> {
               prefixIcon: Image.asset(
                 "assets/image/icons/search-normal.png",
               ),
-              // suffixIcon: IconButton(
-              //   onPressed: () {
-              //     setState(() {
-              //       widget.searchController.clear();
-              //     });
-              //   },
-              //   icon: Image.asset(
-              //     "assets/image/icons/close-circle.png",
-              //     height: 25,
-              //     color: Colors.black,
-              //   ),
-              // ),
             ),
           );
         }));

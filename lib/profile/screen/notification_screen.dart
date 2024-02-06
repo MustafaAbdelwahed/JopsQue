@@ -72,6 +72,8 @@ class _NotificationEditSCreenState extends State<NotificationEditSCreen> {
                         onChanged: (value) {
                           setState(() {
                             jobNotification[keyOfJob[index]] = value;
+                            print(
+                                "the ${keyOfJob[index]} is ${jobNotification[keyOfJob[index]]}");
                           });
                         },
                       );
@@ -106,6 +108,9 @@ class _NotificationEditSCreenState extends State<NotificationEditSCreen> {
                         onChanged: (value) {
                           setState(() {
                             otherNotification[keyOfOther[index]] = value;
+                            // print("the ${otherNotification[index]} is $value");
+                            print(
+                                "the ${keyOfOther[index]} is ${otherNotification[keyOfOther[index]]}");
                           });
                         },
                       );

@@ -51,11 +51,11 @@ class SuccessfullySentDataScreen extends StatelessWidget {
             CustomElvatedButton(
                 text: const Text("Back to home"),
                 onpress: () async {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => BootomNavigator(
-                        // user: user,
-                        ),
-                  ));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => BootomNavigator(),
+                      ),
+                      (route) => false);
                 },
                 color: const Color(0xff3366FF)),
             const SizedBox(

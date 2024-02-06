@@ -57,7 +57,7 @@ class SearchScreen extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 5),
                               child: Column(
                                   children:
@@ -87,11 +87,10 @@ class SearchScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: Column(
                       children: [
-                        PopularSearches(),
-                        PopularSearches(),
-                        PopularSearches(),
-                        PopularSearches(),
-                        PopularSearches(),
+                        PopularSearches(searchName: "Test Engineers"),
+                        PopularSearches(searchName: "Flutter Developer"),
+                        PopularSearches(
+                            searchName: "Machine Learning Engineer"),
                       ],
                     ),
                   )
@@ -104,35 +103,3 @@ class SearchScreen extends StatelessWidget {
     );
   }
 }
-
-// class PopularSearches extends StatelessWidget {
-//   const PopularSearches({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 5),
-//       child: SizedBox(
-//         width: double.infinity,
-//         height: 30,
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//           children: [
-//             Image.asset("assets/image/icons/search-status.png"),
-//             const Spacer(),
-//             const Text("Junior UI Designer"),
-//             const Spacer(
-//               flex: 20,
-//             ),
-//             Image.asset(
-//               "assets/image/icons/circul-right-arrow.png",
-//               height: 23,
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

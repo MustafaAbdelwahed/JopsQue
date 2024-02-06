@@ -8,7 +8,7 @@ import 'package:graduated_project/apply_jop/screen/upload_portfolio.dart';
 import 'package:graduated_project/model/jops.dart';
 import 'package:graduated_project/provider/provider.dart';
 import 'package:graduated_project/widgets/custom_elvated_button.dart';
-import 'package:graduated_project/message/widget/saved_icon.dart';
+import 'package:graduated_project/widgets/saved_icon.dart';
 
 class ApplyJopScreen extends StatefulWidget {
   const ApplyJopScreen({super.key, required this.jop});
@@ -233,9 +233,6 @@ class _ApplyJopScreenState extends State<ApplyJopScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
             Consumer(builder: (context, ref, _) {
               return CustomElvatedButton(
                   text: Text(
@@ -277,10 +274,11 @@ class _ApplyJopScreenState extends State<ApplyJopScreen> {
                               phoneController.text,
                               widget.jop.jobTimeType,
                               widget.jop.id);
-
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                const SuccessfullySentDataScreen(),
+                                const SuccessfullySentDataScreen(
+                                    // user: user,
+                                    ),
                           ));
                         }
                     }

@@ -136,31 +136,32 @@ class _ResaultSearchScreenState extends State<ResaultSearchScreen> {
                       ),
                     ],
                   ),
-                  Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
-                    children: ref.watch(providerr).filterJops.isNotEmpty
-                        ? [
-                            Container(
-                              padding: const EdgeInsets.only(left: 30),
-                              height: 36,
-                              width: double.infinity,
-                              alignment: Alignment.centerLeft,
-                              color: const Color(0XFFE5E7EB),
-                              child: Text(
-                                "Featuring ${ref.watch(providerr).filterJops.length} jobs",
-                                style:
-                                    const TextStyle(color: Color(0XFF6B7280)),
+                  ref.watch(providerr).filterJops.isNotEmpty
+                      ? Column(
+                          // crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                              Container(
+                                padding: const EdgeInsets.only(left: 30),
+                                height: 36,
+                                width: double.infinity,
+                                alignment: Alignment.centerLeft,
+                                color: const Color(0XFFE5E7EB),
+                                child: Text(
+                                  "Featuring ${ref.watch(providerr).filterJops.length} jobs",
+                                  style:
+                                      const TextStyle(color: Color(0XFF6B7280)),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Column(
-                                children: ref.watch(providerr).filterJops,
-                              ),
-                            )
-                          ]
-                        : [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  children: ref.watch(providerr).filterJops,
+                                ),
+                              )
+                            ])
+                      : Column(
+                          children: [
                             const SizedBox(
                               height: 100,
                             ),
@@ -189,7 +190,7 @@ class _ResaultSearchScreenState extends State<ResaultSearchScreen> {
                                       fontWeight: FontWeight.w400)),
                             ),
                           ],
-                  ),
+                        )
                 ],
               );
             }),

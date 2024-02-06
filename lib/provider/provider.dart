@@ -12,6 +12,7 @@ import 'package:graduated_project/model/user.dart';
 import 'package:graduated_project/profile/screen/portfolio_screen.dart';
 import 'package:graduated_project/saved_jops/widget/saved_jops_tem.dart';
 import 'package:graduated_project/widgets/custom_search.dart';
+import 'package:image_picker/image_picker.dart';
 // import 'package:graduated_project/saved_jops/widget/saved_jops_item.dart';
 
 import '../database/local_database.dart';
@@ -93,6 +94,15 @@ class JopProvider extends ChangeNotifier {
   }
 
 /////////////////////////////////////////////about user
+
+  // Future<void> selectImage() async {
+  //   final pickedImage =
+  //       await ImagePicker().pickImage(source: ImageSource.gallery);
+
+  //   user!.image = pickedImage!.path;
+  //   print("the image is ${user!.image}");
+  //   notifyListeners();
+  // }
 
   Future login(String email, String password, bool isRmember) async {
     Dio dio = Dio();
@@ -427,14 +437,16 @@ class JopProvider extends ChangeNotifier {
   }
 
   void setSearch(String searchName) async {
-    LocalDataBase.setRecentSearche(user!, searchName);
-    searchJobs(searchName);
+    if (searchName.isNotEmpty) {
+      LocalDataBase.setRecentSearche(user!, searchName);
+      searchJobs(searchName);
 
-    await Future.delayed(const Duration(milliseconds: 1500));
-    recentSearches.removeWhere((element) => element.searchName == searchName);
-    recentSearches.insert(0, RecentSearches(searchName: searchName));
+      await Future.delayed(const Duration(milliseconds: 1500));
+      recentSearches.removeWhere((element) => element.searchName == searchName);
+      recentSearches.insert(0, RecentSearches(searchName: searchName));
 
-    notifyListeners();
+      notifyListeners();
+    }
   }
 
   void deleteSearch(String searchName) async {

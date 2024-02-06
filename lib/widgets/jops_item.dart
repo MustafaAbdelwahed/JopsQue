@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduated_project/jop_detail/jop_detail_screen.dart';
 import 'package:graduated_project/model/jops.dart';
 import 'package:graduated_project/widgets/custom_chip.dart';
-import 'package:graduated_project/message/widget/saved_icon.dart';
+import 'package:graduated_project/widgets/saved_icon.dart';
 
 class JopsItem extends StatelessWidget {
   JopsItem({
