@@ -14,7 +14,7 @@ class UploadPortfolioScreen extends StatefulWidget {
 }
 
 class _UploadPortfolioScreenState extends State<UploadPortfolioScreen> {
-  int? selectedValue;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -60,6 +60,7 @@ class _UploadPortfolioScreenState extends State<UploadPortfolioScreen> {
               height: 10,
             ),
             ListTile(
+
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                   side: const BorderSide(color: Color(0xffD1D5DB))),

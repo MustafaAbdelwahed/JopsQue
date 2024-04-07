@@ -5,15 +5,12 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graduated_project/applyid_jop/applyid_jop_screen.dart';
-import 'package:graduated_project/home/screen/search_screen.dart';
 import 'package:graduated_project/message/widget/message_items.dart';
 import 'package:graduated_project/model/company.dart';
 import 'package:graduated_project/model/user.dart';
 import 'package:graduated_project/profile/screen/portfolio_screen.dart';
 import 'package:graduated_project/saved_jops/widget/saved_jops_tem.dart';
 import 'package:graduated_project/widgets/custom_search.dart';
-import 'package:image_picker/image_picker.dart';
-// import 'package:graduated_project/saved_jops/widget/saved_jops_item.dart';
 
 import '../database/local_database.dart';
 import '../home/widget/recent_searches.dart';
@@ -65,10 +62,12 @@ class JopProvider extends ChangeNotifier {
     } else {
       for (var element in response.data['data']) {
         Jops jop = Jops.fromJson(element);
+
         if (savedJopsId != null && savedJopsId.isNotEmpty) {
           for (var savejop in savedJopsId) {
             if (savejop == jop.id.toString()) {
               savedJops.add(SavedJopsItem(jop: jop));
+
               jop.isSaved = true;
             }
           }
@@ -83,6 +82,7 @@ class JopProvider extends ChangeNotifier {
         ));
       }
     }
+
     notifyListeners();
   }
 
@@ -226,9 +226,7 @@ class JopProvider extends ChangeNotifier {
 /////////////////////////////////////////////message
   Future<void> getMessage() async {
     Dio dio = Dio();
-    // String token = await LocalDataBase.getToken() ?? user!.token;
     String token = user?.token ?? await LocalDataBase.getToken();
-    // int id = user!.id ?? await LocalDataBase.getID();
     final companyResponse = await dio.get(
       "https://project2.amit-learning.com/api/showCompany",
       options: Options(headers: {
@@ -238,42 +236,20 @@ class JopProvider extends ChangeNotifier {
       }, validateStatus: (_) => true),
     );
 
-    // final messsageResponse = await dio.get(
-    //   "https://project2.amit-learning.com/api/chat",
-    //   queryParameters: {
-    //     "user_id": 736,
-    //     "comp_id": 1,
-    //   },
-    //   options: Options(headers: {
-    //     'Authorization': 'Bearer $token',
-    //     'Content-Type': 'application/json',
-    //     "Accept": "application/json",
-    //   }, validateStatus: (_) => true),
-    // );
-
-    // print(companyResponse.statusCode);
     List company = companyResponse.data["data"];
     for (var element in company) {
       messageList.add(MessageItems(
         company: Company.fromJson(element),
       ));
     }
-    // print(company);
-
-    // print(messsageResponse.statusCode);
-    // print(messsageResponse);
-    // user = User.fromJson(response.data['data']['profile']);
-    // print("/////////////////////////////////");
-    // print("the ID: ${user?.bio == null}");
-    // notifyListeners();
   }
 
 /////////////////////////////////////////////searchJops
   Future<void> searchJobs(String? nameOfJop) async {
     filterJops.clear();
     Dio dio = Dio();
-    // String token =  await LocalDataBase.getToken();
     String token = user?.token ?? await LocalDataBase.getToken();
+
     final response = await dio.post(
       "https://project2.amit-learning.com/api/jobs/filter",
       data: {
